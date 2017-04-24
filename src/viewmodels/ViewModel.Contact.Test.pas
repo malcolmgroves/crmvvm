@@ -2,7 +2,7 @@ unit ViewModel.Contact.Test;
 
 interface
 uses
-  DUnitX.TestFramework, ViewModel.Contact, Model.Contact;
+  DUnitX.TestFramework, ViewModel.Contact, Model.Contact, Model.COmpany;
 
 type
 
@@ -10,6 +10,7 @@ type
   TContactViewModelTest = class(TObject)
   private
     FContact : TContact;
+    FCompany : TCompany;
     FViewModel : TContactViewModel;
   public
     [Setup]
@@ -30,9 +31,15 @@ const
 
 procedure TContactViewModelTest.Setup;
 begin
+  FCompany := TCompany.Create;
+  FCompany.Name := 'Code Partners Pty Ltd';
+  FCompany.Web := 'https://www.code-partners.com';
+  FCompany.ID := 1;
+
   FContact := TContact.Create;
   FContact.Firstname := cFirstname;
   FContact.Lastname := cLastname;
+  FContact.Company := FCompany;
   FViewModel := TContactViewModel.Create(FContact);
 end;
 
@@ -40,6 +47,7 @@ procedure TContactViewModelTest.TearDown;
 begin
   FViewModel.Free;
   FContact.Free;
+  FCompany.Free;
 end;
 
 

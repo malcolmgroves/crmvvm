@@ -1,0 +1,268 @@
+object CompanyView: TCompanyView
+  Left = 0
+  Top = 0
+  Caption = 'Form1'
+  ClientHeight = 480
+  ClientWidth = 640
+  FormFactor.Width = 320
+  FormFactor.Height = 480
+  FormFactor.Devices = [Desktop]
+  OnClose = FormClose
+  DesignerMasterStyle = 0
+  object ToolBar1: TToolBar
+    Align = Bottom
+    Margins.Left = 8.000000000000000000
+    Margins.Right = 8.000000000000000000
+    Margins.Bottom = 8.000000000000000000
+    Position.X = 8.000000000000000000
+    Position.Y = 432.000000000000000000
+    Size.Width = 624.000000000000000000
+    Size.Height = 40.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 0
+    TabStop = False
+    object Button1: TButton
+      Action = actCancel
+      Align = Right
+      Enabled = True
+      ImageIndex = -1
+      ModalResult = 2
+      Margins.Left = 8.000000000000000000
+      Position.X = 496.000000000000000000
+      Size.Width = 128.000000000000000000
+      Size.Height = 40.000000000000000000
+      Size.PlatformDefault = False
+      StyleLookup = 'buttonstyle'
+      TabOrder = 4
+    end
+    object Button2: TButton
+      Action = actSave
+      Align = Right
+      Enabled = True
+      ImageIndex = -1
+      ModalResult = 1
+      Position.X = 360.000000000000000000
+      Size.Width = 128.000000000000000000
+      Size.Height = 40.000000000000000000
+      Size.PlatformDefault = False
+      StyleLookup = 'buttonstyle'
+      TabOrder = 3
+    end
+  end
+  object Layout1: TLayout
+    Align = Client
+    Padding.Left = 8.000000000000000000
+    Padding.Top = 8.000000000000000000
+    Padding.Right = 8.000000000000000000
+    Padding.Bottom = 8.000000000000000000
+    Size.Width = 640.000000000000000000
+    Size.Height = 432.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 1
+    TabStop = False
+    object Rectangle1: TRectangle
+      Align = Client
+      Fill.Color = claWhite
+      Padding.Left = 8.000000000000000000
+      Padding.Top = 8.000000000000000000
+      Padding.Right = 8.000000000000000000
+      Padding.Bottom = 8.000000000000000000
+      Sides = []
+      Size.Width = 624.000000000000000000
+      Size.Height = 416.000000000000000000
+      Size.PlatformDefault = False
+      object Line1: TLine
+        Align = Top
+        LineType = Top
+        Position.X = 8.000000000000000000
+        Position.Y = 58.000000000000000000
+        Size.Width = 608.000000000000000000
+        Size.Height = 7.000000000000000000
+        Size.PlatformDefault = False
+      end
+      object Layout3: TLayout
+        Align = Top
+        Position.X = 8.000000000000000000
+        Position.Y = 8.000000000000000000
+        Size.Width = 608.000000000000000000
+        Size.Height = 50.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 1
+        TabStop = False
+        object Label3: TLabel
+          Align = Client
+          Size.Width = 608.000000000000000000
+          Size.Height = 50.000000000000000000
+          Size.PlatformDefault = False
+          StyleLookup = 'listboxheaderlabel'
+          Text = 'Darkgoldenrod'
+          TabOrder = 0
+          TabStop = False
+        end
+      end
+      object Layout14: TLayout
+        Align = Top
+        Position.X = 8.000000000000000000
+        Position.Y = 65.000000000000000000
+        Size.Width = 608.000000000000000000
+        Size.Height = 50.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 2
+        TabStop = False
+        object Layout15: TLayout
+          Align = Top
+          Size.Width = 608.000000000000000000
+          Size.Height = 50.000000000000000000
+          Size.PlatformDefault = False
+          TabOrder = 0
+          TabStop = False
+          object Layout16: TLayout
+            Align = Left
+            Size.Width = 89.000000000000000000
+            Size.Height = 50.000000000000000000
+            Size.PlatformDefault = False
+            TabOrder = 0
+            object Label4: TLabel
+              Align = Client
+              Size.Width = 89.000000000000000000
+              Size.Height = 50.000000000000000000
+              Size.PlatformDefault = False
+              Text = 'Name:'
+              TabOrder = 0
+            end
+          end
+          object Layout17: TLayout
+            Align = Client
+            Padding.Top = 8.000000000000000000
+            Padding.Bottom = 8.000000000000000000
+            Size.Width = 519.000000000000000000
+            Size.Height = 50.000000000000000000
+            Size.PlatformDefault = False
+            TabOrder = 1
+            TabStop = False
+            object Edit4: TEdit
+              Touch.InteractiveGestures = [LongTap, DoubleTap]
+              Align = Client
+              TabOrder = 0
+              Text = 'Darkgoldenrod'
+              Size.Width = 519.000000000000000000
+              Size.Height = 34.000000000000000000
+              Size.PlatformDefault = False
+            end
+          end
+        end
+      end
+      object Layout2: TLayout
+        Align = Top
+        Position.X = 8.000000000000000000
+        Position.Y = 115.000000000000000000
+        Size.Width = 608.000000000000000000
+        Size.Height = 50.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 3
+        TabStop = False
+        object Layout4: TLayout
+          Align = Top
+          Size.Width = 608.000000000000000000
+          Size.Height = 50.000000000000000000
+          Size.PlatformDefault = False
+          TabOrder = 0
+          TabStop = False
+          object Layout5: TLayout
+            Align = Left
+            Size.Width = 89.000000000000000000
+            Size.Height = 50.000000000000000000
+            Size.PlatformDefault = False
+            TabOrder = 0
+            object Label1: TLabel
+              Align = Client
+              Size.Width = 89.000000000000000000
+              Size.Height = 50.000000000000000000
+              Size.PlatformDefault = False
+              Text = 'Web:'
+              TabOrder = 0
+            end
+          end
+          object Layout6: TLayout
+            Align = Client
+            Padding.Top = 8.000000000000000000
+            Padding.Bottom = 8.000000000000000000
+            Size.Width = 519.000000000000000000
+            Size.Height = 50.000000000000000000
+            Size.PlatformDefault = False
+            TabOrder = 1
+            TabStop = False
+            object Edit1: TEdit
+              Touch.InteractiveGestures = [LongTap, DoubleTap]
+              Align = Client
+              TabOrder = 0
+              Text = 'Mark Anderson'
+              Size.Width = 519.000000000000000000
+              Size.Height = 34.000000000000000000
+              Size.PlatformDefault = False
+            end
+          end
+        end
+      end
+    end
+  end
+  object ActionList1: TActionList
+    Left = 368
+    Top = 32
+    object actSave: TAction
+      Text = 'Save'
+      OnExecute = actSaveExecute
+      OnUpdate = actSaveUpdate
+    end
+    object actCancel: TAction
+      Text = 'Cancel'
+      OnExecute = actCancelExecute
+    end
+  end
+  object bindsrcCompany: TPrototypeBindSource
+    AutoActivate = True
+    AutoPost = False
+    FieldDefs = <
+      item
+        Name = 'Name'
+        Generator = 'ColorsNames'
+        ReadOnly = False
+      end
+      item
+        Name = 'Web'
+        Generator = 'ContactNames'
+        ReadOnly = False
+      end>
+    ScopeMappings = <>
+    OnCreateAdapter = bindsrcCompanyCreateAdapter
+    Left = 304
+    Top = 160
+  end
+  object BindingsList1: TBindingsList
+    Methods = <>
+    OutputConverters = <>
+    Left = 20
+    Top = 5
+    object LinkControlToField1: TLinkControlToField
+      Category = 'Quick Bindings'
+      DataSource = bindsrcCompany
+      FieldName = 'Name'
+      Control = Edit4
+      Track = False
+    end
+    object LinkPropertyToFieldText: TLinkPropertyToField
+      Category = 'Quick Bindings'
+      DataSource = bindsrcCompany
+      FieldName = 'Name'
+      Component = Label3
+      ComponentProperty = 'Text'
+    end
+    object LinkControlToField2: TLinkControlToField
+      Category = 'Quick Bindings'
+      DataSource = bindsrcCompany
+      FieldName = 'Web'
+      Control = Edit1
+      Track = False
+    end
+  end
+end

@@ -8,7 +8,8 @@ uses
   FMX.Objects, FMX.StdCtrls, FMX.Layouts, FMX.Controls.Presentation,
   Data.Bind.GenData, Data.Bind.Components, Data.Bind.ObjectScope,
   System.Actions, FMX.ActnList, FMX.Edit, System.Rtti, System.Bindings.Outputs,
-  Fmx.Bind.Editors, Data.Bind.EngExt, Fmx.Bind.DBEngExt, MVVM.View.FMX.Form;
+  Fmx.Bind.Editors, Data.Bind.EngExt, Fmx.Bind.DBEngExt, MVVM.View.FMX.Form,
+  FMX.ListBox;
 
 type
   TContactView = class(TFormView<TContactViewModel>)
@@ -53,12 +54,25 @@ type
     LinkControlToField3: TLinkControlToField;
     LinkControlToField4: TLinkControlToField;
     LinkPropertyToFieldText: TLinkPropertyToField;
+    Layout18: TLayout;
+    Layout19: TLayout;
+    Layout20: TLayout;
+    Label6: TLabel;
+    Layout21: TLayout;
+    bindsrcCompanies: TPrototypeBindSource;
+    ComboBox1: TComboBox;
+    LinkFillControlToField1: TLinkFillControlToField;
     procedure actSaveExecute(Sender: TObject);
     procedure actSaveUpdate(Sender: TObject);
     procedure bindsrcContactCreateAdapter(Sender: TObject;
       var ABindSourceAdapter: TBindSourceAdapter);
     procedure actCancelExecute(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
+    procedure bindsrcCompaniesCreateAdapter(Sender: TObject;
+      var ABindSourceAdapter: TBindSourceAdapter);
+    procedure LinkFillControlToField1AssigningValue(Sender: TObject;
+      AssignValueRec: TBindingAssignValueRec; var Value: TValue;
+      var Handled: Boolean);
   end;
 
 var
@@ -66,7 +80,7 @@ var
 
 implementation
 uses
-  Model.Contact;
+  Model.Contact, Model.Company, EnumerableAdapter;
 
 {$R *.fmx}
 
@@ -91,6 +105,37 @@ end;
 procedure TContactView.FormClose(Sender: TObject; var Action: TCloseAction);
 begin
   Action := TCloseAction.caFree;
+end;
+
+procedure TContactView.LinkFillControlToField1AssigningValue(Sender: TObject;
+  AssignValueRec: TBindingAssignValueRec; var Value: TValue;
+  var Handled: Boolean);
+begin
+  if AssignValueRec.OutObj = nil then
+  begin
+    // selecting the correct Company in the lookup based on the Company in TContact
+    if Assigned(ViewModel.Contact.Company) then
+    begin
+      Value := TValue.From<Integer>(ViewModel.Contact.Company.ID);
+      // assigning the value doesn't update the selection in the combobox
+      ComboBox1.ItemIndex := ComboBox1.Items.IndexOf(ViewModel.Contact.Company.Name);
+    end;
+    Handled := True;
+  end
+  else
+  begin
+    // assigning the selected Company back to the TContact
+    if (not Assigned(ViewModel.Contact.Company)) or (ViewModel.Contact.Company.ID <> Value.AsInteger) then
+      ViewModel.Contact.Company := ViewModel.GetCompanyByID(Value.AsInteger);
+    Handled := True;
+  end;
+end;
+
+procedure TContactView.bindsrcCompaniesCreateAdapter(Sender: TObject;
+  var ABindSourceAdapter: TBindSourceAdapter);
+begin
+  ABindSourceAdapter := TEnumerableBindSourceAdapter<TCompany>.Create(bindsrcCompanies,
+                                                                      ViewModel.AllCompanies.GetEnumerable);
 end;
 
 procedure TContactView.bindsrcContactCreateAdapter(Sender: TObject;

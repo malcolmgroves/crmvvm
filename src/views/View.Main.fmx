@@ -18,6 +18,7 @@ object MainView: TMainView
       Action = actAdd
       Align = Right
       Enabled = True
+      Images = ImageList1
       ImageIndex = -1
       Position.X = 528.000000000000000000
       Size.Width = 56.000000000000000000
@@ -29,6 +30,7 @@ object MainView: TMainView
       Action = actEdit
       Align = Right
       Enabled = True
+      Images = ImageList1
       ImageIndex = -1
       Position.X = 584.000000000000000000
       Size.Width = 56.000000000000000000
@@ -36,202 +38,427 @@ object MainView: TMainView
       Size.PlatformDefault = False
       StyleLookup = 'composetoolbutton'
     end
+    object SpeedButton1: TSpeedButton
+      Align = Left
+      Size.Width = 49.000000000000000000
+      Size.Height = 40.000000000000000000
+      Size.PlatformDefault = False
+      StyleLookup = 'drawertoolbutton'
+      Text = 'SpeedButton1'
+    end
   end
-  object layoutMain: TLayout
+  object PopupMenu1: TPopupMenu
+    Left = 376
+    Top = 216
+    object MenuItem1: TMenuItem
+      Action = actDelete
+      Enabled = True
+      ImageIndex = -1
+    end
+  end
+  object TabControl1: TTabControl
     Align = Client
-    Padding.Right = 8.000000000000000000
-    Padding.Bottom = 8.000000000000000000
-    Size.Width = 640.000000000000000000
+    Margins.Left = 50.000000000000000000
+    Size.Width = 590.000000000000000000
     Size.Height = 440.000000000000000000
     Size.PlatformDefault = False
-    TabOrder = 3
-    object ListView1: TListView
-      ItemAppearanceClassName = 'TListItemAppearance'
-      ItemEditAppearanceClassName = 'TListItemShowCheckAppearance'
-      HeaderAppearanceClassName = 'TListHeaderObjects'
-      FooterAppearanceClassName = 'TListHeaderObjects'
-      ItemIndex = 0
-      Align = Left
-      PopupMenu = PopupMenu1
-      Size.Width = 241.000000000000000000
-      Size.Height = 432.000000000000000000
-      Size.PlatformDefault = False
-      TabOrder = 0
-      ItemAppearanceObjects.ItemObjects.Accessory.AccessoryType = Detail
-      ItemAppearanceObjects.ItemObjects.Accessory.Visible = False
-      StyleLookup = 'listviewstyle'
-      OnDblClick = actEditExecute
-      SelectionCrossfade = True
-    end
-    object Splitter1: TSplitter
-      Align = Left
-      Cursor = crHSplit
-      MinSize = 20.000000000000000000
-      Position.X = 241.000000000000000000
+    TabIndex = 0
+    TabOrder = 8
+    TabPosition = None
+    Sizes = (
+      590s
+      440s
+      590s
+      440s)
+    object tabContacts: TTabItem
+      CustomIcon = <
+        item
+        end>
+      IsSelected = True
       Size.Width = 8.000000000000000000
-      Size.Height = 432.000000000000000000
+      Size.Height = 8.000000000000000000
       Size.PlatformDefault = False
-    end
-    object Layout1: TLayout
-      Align = Client
-      Padding.Top = 1.000000000000000000
-      Size.Width = 383.000000000000000000
-      Size.Height = 432.000000000000000000
-      Size.PlatformDefault = False
-      TabOrder = 2
-      object Rectangle1: TRectangle
+      StyleLookup = ''
+      TabOrder = 0
+      Text = 'tabContacts'
+      ExplicitSize.cx = 8.000000000000000000
+      ExplicitSize.cy = 8.000000000000000000
+      object layoutMain: TLayout
         Align = Client
-        Fill.Color = claWhite
-        Padding.Left = 8.000000000000000000
-        Padding.Top = 8.000000000000000000
         Padding.Right = 8.000000000000000000
         Padding.Bottom = 8.000000000000000000
-        Sides = []
-        Size.Width = 383.000000000000000000
-        Size.Height = 431.000000000000000000
+        Size.Width = 590.000000000000000000
+        Size.Height = 440.000000000000000000
         Size.PlatformDefault = False
-        object Layout2: TLayout
-          Align = Top
-          Position.X = 8.000000000000000000
-          Position.Y = 65.000000000000000000
-          Size.Width = 367.000000000000000000
-          Size.Height = 50.000000000000000000
+        TabOrder = 0
+        object ListView1: TListView
+          ItemAppearanceClassName = 'TListItemAppearance'
+          ItemEditAppearanceClassName = 'TListItemShowCheckAppearance'
+          HeaderAppearanceClassName = 'TListHeaderObjects'
+          FooterAppearanceClassName = 'TListHeaderObjects'
+          ItemIndex = 0
+          Align = Left
+          PopupMenu = PopupMenu1
+          Size.Width = 241.000000000000000000
+          Size.Height = 432.000000000000000000
           Size.PlatformDefault = False
           TabOrder = 0
-          object Layout6: TLayout
-            Align = Top
-            Size.Width = 367.000000000000000000
-            Size.Height = 50.000000000000000000
+          ItemAppearanceObjects.ItemObjects.Accessory.AccessoryType = Detail
+          ItemAppearanceObjects.ItemObjects.Accessory.Visible = False
+          StyleLookup = 'listviewstyle'
+          OnDblClick = actEditExecute
+          SelectionCrossfade = True
+        end
+        object Splitter1: TSplitter
+          Align = Left
+          Cursor = crHSplit
+          MinSize = 20.000000000000000000
+          Position.X = 241.000000000000000000
+          Size.Width = 8.000000000000000000
+          Size.Height = 432.000000000000000000
+          Size.PlatformDefault = False
+        end
+        object Layout1: TLayout
+          Align = Client
+          Padding.Top = 1.000000000000000000
+          Size.Width = 333.000000000000000000
+          Size.Height = 432.000000000000000000
+          Size.PlatformDefault = False
+          TabOrder = 2
+          object Rectangle1: TRectangle
+            Align = Client
+            Fill.Color = claWhite
+            Padding.Left = 8.000000000000000000
+            Padding.Top = 8.000000000000000000
+            Padding.Right = 8.000000000000000000
+            Padding.Bottom = 8.000000000000000000
+            Sides = []
+            Size.Width = 333.000000000000000000
+            Size.Height = 431.000000000000000000
             Size.PlatformDefault = False
-            TabOrder = 0
-            object Layout7: TLayout
-              Align = Left
-              Size.Width = 89.000000000000000000
+            object Layout2: TLayout
+              Align = Top
+              Position.X = 8.000000000000000000
+              Position.Y = 65.000000000000000000
+              Size.Width = 317.000000000000000000
               Size.Height = 50.000000000000000000
               Size.PlatformDefault = False
               TabOrder = 0
-              object Label5: TLabel
+              object Layout6: TLayout
+                Align = Top
+                Size.Width = 317.000000000000000000
+                Size.Height = 50.000000000000000000
+                Size.PlatformDefault = False
+                TabOrder = 0
+                object Layout7: TLayout
+                  Align = Left
+                  Size.Width = 89.000000000000000000
+                  Size.Height = 50.000000000000000000
+                  Size.PlatformDefault = False
+                  TabOrder = 0
+                  object Label5: TLabel
+                    Align = Client
+                    Size.Width = 89.000000000000000000
+                    Size.Height = 50.000000000000000000
+                    Size.PlatformDefault = False
+                    Text = 'Email:'
+                    TabOrder = 0
+                  end
+                end
+                object Layout8: TLayout
+                  Align = Client
+                  Size.Width = 228.000000000000000000
+                  Size.Height = 50.000000000000000000
+                  Size.PlatformDefault = False
+                  TabOrder = 1
+                  object Label6: TLabel
+                    Align = Client
+                    Size.Width = 228.000000000000000000
+                    Size.Height = 50.000000000000000000
+                    Size.PlatformDefault = False
+                    Text = 
+                      'ipsum mi vehicula purus, eu congue sapien orci eu est. Morbi bla' +
+                      'ndit volutpat ante, non ultrices eros semper at. Fusce leo leo, ' +
+                      'mollis id viverra a, pulvinar non diam. Praesent ornare mauris a' +
+                      'c magna placerat rutrum.Curabitur volutpat urna fermentum sem ia' +
+                      'culis ultrices. Maecenas adipiscing sapien risus, nec consectetu' +
+                      'r arcu. Sed in arcu iaculis felis placerat elementum vitae porta' +
+                      ' libero. Donec quis purus nisi, ac ultrices lorem. Proin vitae d' +
+                      'iam id turpis rhoncus vestibulum scelerisque vel leo. Nulla quis' +
+                      ' scelerisque sem. Etiam imperdiet lacinia nulla sit amet varius.' +
+                      ' Aliquam in interdum mauris. Praesent placerat, libero vel biben' +
+                      'dum malesuada, velit libero vestibulum erat, vel porttitor diam ' +
+                      'urna et nibh. Nullam fringilla cursus tempor. Cras eleifend male' +
+                      'suada lacus quis consectetur. Cum sociis natoque penatibus et ma' +
+                      'gnis dis parturient montes, nascetur ridiculus mus. Sed vestibul' +
+                      'um bibendum sodales.Mauris consectetur ipsum ac turpis aliquam i' +
+                      'd placerat justo ornare. Donec nisl arcu, faucibus vel dictum vi' +
+                      'tae, dapibus vel mauris. Sed lacinia, elit ut commodo tempor, ma' +
+                      'uris felis consequat nisl, sit amet laoreet est quam et tortor. ' +
+                      'Proin mattis interdum tempus. Etiam ac vehicula neque. Donec tem' +
+                      'por, velit sit'
+                    TabOrder = 0
+                  end
+                end
+              end
+            end
+            object Line1: TLine
+              Align = Top
+              LineType = Top
+              Position.X = 8.000000000000000000
+              Position.Y = 58.000000000000000000
+              Size.Width = 317.000000000000000000
+              Size.Height = 7.000000000000000000
+              Size.PlatformDefault = False
+            end
+            object Layout3: TLayout
+              Align = Top
+              Position.X = 8.000000000000000000
+              Position.Y = 8.000000000000000000
+              Size.Width = 317.000000000000000000
+              Size.Height = 50.000000000000000000
+              Size.PlatformDefault = False
+              TabOrder = 2
+              object Label3: TLabel
                 Align = Client
+                Size.Width = 317.000000000000000000
+                Size.Height = 50.000000000000000000
+                Size.PlatformDefault = False
+                StyleLookup = 'listboxheaderlabel'
+                Text = 'Darkgoldenrod Darkgoldenrod'
+                TabOrder = 0
+              end
+            end
+            object Layout5: TLayout
+              Align = Top
+              Position.X = 8.000000000000000000
+              Position.Y = 115.000000000000000000
+              Size.Width = 317.000000000000000000
+              Size.Height = 50.000000000000000000
+              Size.PlatformDefault = False
+              TabOrder = 3
+              object Layout9: TLayout
+                Align = Left
                 Size.Width = 89.000000000000000000
                 Size.Height = 50.000000000000000000
                 Size.PlatformDefault = False
-                Text = 'Email:'
                 TabOrder = 0
+                object Label2: TLabel
+                  Align = Client
+                  Size.Width = 89.000000000000000000
+                  Size.Height = 50.000000000000000000
+                  Size.PlatformDefault = False
+                  Text = 'Phone:'
+                  TabOrder = 0
+                end
               end
-            end
-            object Layout8: TLayout
-              Align = Client
-              Size.Width = 278.000000000000000000
-              Size.Height = 50.000000000000000000
-              Size.PlatformDefault = False
-              TabOrder = 1
-              object Label6: TLabel
+              object Layout10: TLayout
                 Align = Client
-                Size.Width = 278.000000000000000000
+                Size.Width = 228.000000000000000000
                 Size.Height = 50.000000000000000000
                 Size.PlatformDefault = False
-                Text = 
-                  'ipsum mi vehicula purus, eu congue sapien orci eu est. Morbi bla' +
-                  'ndit volutpat ante, non ultrices eros semper at. Fusce leo leo, ' +
-                  'mollis id viverra a, pulvinar non diam. Praesent ornare mauris a' +
-                  'c magna placerat rutrum.Curabitur volutpat urna fermentum sem ia' +
-                  'culis ultrices. Maecenas adipiscing sapien risus, nec consectetu' +
-                  'r arcu. Sed in arcu iaculis felis placerat elementum vitae porta' +
-                  ' libero. Donec quis purus nisi, ac ultrices lorem. Proin vitae d' +
-                  'iam id turpis rhoncus vestibulum scelerisque vel leo. Nulla quis' +
-                  ' scelerisque sem. Etiam imperdiet lacinia nulla sit amet varius.' +
-                  ' Aliquam in interdum mauris. Praesent placerat, libero vel biben' +
-                  'dum malesuada, velit libero vestibulum erat, vel porttitor diam ' +
-                  'urna et nibh. Nullam fringilla cursus tempor. Cras eleifend male' +
-                  'suada lacus quis consectetur. Cum sociis natoque penatibus et ma' +
-                  'gnis dis parturient montes, nascetur ridiculus mus. Sed vestibul' +
-                  'um bibendum sodales.Mauris consectetur ipsum ac turpis aliquam i' +
-                  'd placerat justo ornare. Donec nisl arcu, faucibus vel dictum vi' +
-                  'tae, dapibus vel mauris. Sed lacinia, elit ut commodo tempor, ma' +
-                  'uris felis consequat nisl, sit amet laoreet est quam et tortor. ' +
-                  'Proin mattis interdum tempus. Etiam ac vehicula neque. Donec tem' +
-                  'por, velit sit'
-                TabOrder = 0
+                TabOrder = 1
+                object Label4: TLabel
+                  Align = Client
+                  Size.Width = 228.000000000000000000
+                  Size.Height = 50.000000000000000000
+                  Size.PlatformDefault = False
+                  Text = 'M 341.236,311.738 L 305.830,346.113 L 305.830,277.363 Z '
+                  TabOrder = 0
+                end
               end
             end
-          end
-        end
-        object Line1: TLine
-          Align = Top
-          LineType = Top
-          Position.X = 8.000000000000000000
-          Position.Y = 58.000000000000000000
-          Size.Width = 367.000000000000000000
-          Size.Height = 7.000000000000000000
-          Size.PlatformDefault = False
-        end
-        object Layout3: TLayout
-          Align = Top
-          Position.X = 8.000000000000000000
-          Position.Y = 8.000000000000000000
-          Size.Width = 367.000000000000000000
-          Size.Height = 50.000000000000000000
-          Size.PlatformDefault = False
-          TabOrder = 2
-          object Label3: TLabel
-            Align = Client
-            Size.Width = 367.000000000000000000
-            Size.Height = 50.000000000000000000
-            Size.PlatformDefault = False
-            StyleLookup = 'listboxheaderlabel'
-            Text = 'Darkgoldenrod Darkgoldenrod'
-            TabOrder = 0
-          end
-        end
-        object Layout5: TLayout
-          Align = Top
-          Position.X = 8.000000000000000000
-          Position.Y = 115.000000000000000000
-          Size.Width = 367.000000000000000000
-          Size.Height = 50.000000000000000000
-          Size.PlatformDefault = False
-          TabOrder = 3
-          object Layout9: TLayout
-            Align = Left
-            Size.Width = 89.000000000000000000
-            Size.Height = 50.000000000000000000
-            Size.PlatformDefault = False
-            TabOrder = 0
-            object Label2: TLabel
-              Align = Client
-              Size.Width = 89.000000000000000000
+            object Layout16: TLayout
+              Align = Top
+              Position.X = 8.000000000000000000
+              Position.Y = 165.000000000000000000
+              Size.Width = 317.000000000000000000
               Size.Height = 50.000000000000000000
               Size.PlatformDefault = False
-              Text = 'Phone:'
-              TabOrder = 0
-            end
-          end
-          object Layout10: TLayout
-            Align = Client
-            Size.Width = 278.000000000000000000
-            Size.Height = 50.000000000000000000
-            Size.PlatformDefault = False
-            TabOrder = 1
-            object Label4: TLabel
-              Align = Client
-              Size.Width = 278.000000000000000000
-              Size.Height = 50.000000000000000000
-              Size.PlatformDefault = False
-              Text = 'M 341.236,311.738 L 305.830,346.113 L 305.830,277.363 Z '
-              TabOrder = 0
+              TabOrder = 4
+              object Layout17: TLayout
+                Align = Left
+                Size.Width = 89.000000000000000000
+                Size.Height = 50.000000000000000000
+                Size.PlatformDefault = False
+                TabOrder = 0
+                object Label9: TLabel
+                  Align = Client
+                  Size.Width = 89.000000000000000000
+                  Size.Height = 50.000000000000000000
+                  Size.PlatformDefault = False
+                  Text = 'Company:'
+                  TabOrder = 0
+                end
+              end
+              object Layout18: TLayout
+                Align = Client
+                Size.Width = 228.000000000000000000
+                Size.Height = 50.000000000000000000
+                Size.PlatformDefault = False
+                TabOrder = 1
+                object Label10: TLabel
+                  Align = Client
+                  Size.Width = 228.000000000000000000
+                  Size.Height = 50.000000000000000000
+                  Size.PlatformDefault = False
+                  Text = 'Bitmap28'
+                  TabOrder = 0
+                end
+              end
             end
           end
         end
       end
     end
+    object tabCompanies: TTabItem
+      CustomIcon = <
+        item
+        end>
+      IsSelected = False
+      Size.Width = 8.000000000000000000
+      Size.Height = 8.000000000000000000
+      Size.PlatformDefault = False
+      StyleLookup = ''
+      TabOrder = 0
+      Text = 'tabCompanies'
+      ExplicitSize.cx = 8.000000000000000000
+      ExplicitSize.cy = 8.000000000000000000
+      object ListView2: TListView
+        ItemAppearanceClassName = 'TListItemAppearance'
+        ItemEditAppearanceClassName = 'TListItemShowCheckAppearance'
+        HeaderAppearanceClassName = 'TListHeaderObjects'
+        FooterAppearanceClassName = 'TListHeaderObjects'
+        ItemIndex = 0
+        Align = Left
+        PopupMenu = PopupMenu1
+        Size.Width = 153.000000000000000000
+        Size.Height = 440.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 0
+        ItemAppearanceObjects.ItemObjects.Accessory.Visible = False
+        OnDblClick = actEditExecute
+      end
+      object Splitter2: TSplitter
+        Align = Left
+        Cursor = crHSplit
+        MinSize = 20.000000000000000000
+        Position.X = 153.000000000000000000
+        Size.Width = 8.000000000000000000
+        Size.Height = 440.000000000000000000
+        Size.PlatformDefault = False
+      end
+      object Layout4: TLayout
+        Align = Client
+        Margins.Left = 8.000000000000000000
+        Margins.Top = 8.000000000000000000
+        Margins.Right = 8.000000000000000000
+        Margins.Bottom = 8.000000000000000000
+        Size.Width = 413.000000000000000000
+        Size.Height = 424.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 2
+        object Layout11: TLayout
+          Align = Top
+          Position.Y = 57.000000000000000000
+          Size.Width = 413.000000000000000000
+          Size.Height = 50.000000000000000000
+          Size.PlatformDefault = False
+          TabOrder = 0
+          object Layout12: TLayout
+            Align = Top
+            Size.Width = 413.000000000000000000
+            Size.Height = 50.000000000000000000
+            Size.PlatformDefault = False
+            TabOrder = 0
+            object Layout13: TLayout
+              Align = Left
+              Size.Width = 89.000000000000000000
+              Size.Height = 50.000000000000000000
+              Size.PlatformDefault = False
+              TabOrder = 0
+              object Label1: TLabel
+                Align = Client
+                Size.Width = 89.000000000000000000
+                Size.Height = 50.000000000000000000
+                Size.PlatformDefault = False
+                Text = 'Web:'
+                TabOrder = 0
+              end
+            end
+            object Layout14: TLayout
+              Align = Client
+              Size.Width = 324.000000000000000000
+              Size.Height = 50.000000000000000000
+              Size.PlatformDefault = False
+              TabOrder = 1
+              object Label7: TLabel
+                Align = Client
+                Size.Width = 324.000000000000000000
+                Size.Height = 50.000000000000000000
+                Size.PlatformDefault = False
+                Text = 'Mark Anderson'
+                TabOrder = 0
+              end
+            end
+          end
+        end
+        object Layout15: TLayout
+          Align = Top
+          Size.Width = 413.000000000000000000
+          Size.Height = 50.000000000000000000
+          Size.PlatformDefault = False
+          TabOrder = 2
+          object Label8: TLabel
+            Align = Client
+            Size.Width = 413.000000000000000000
+            Size.Height = 50.000000000000000000
+            Size.PlatformDefault = False
+            StyleLookup = 'listboxheaderlabel'
+            Text = 'Darkgoldenrod'
+            TabOrder = 0
+          end
+        end
+        object Line2: TLine
+          Align = Top
+          LineType = Top
+          Position.Y = 50.000000000000000000
+          Size.Width = 413.000000000000000000
+          Size.Height = 7.000000000000000000
+          Size.PlatformDefault = False
+        end
+      end
+    end
   end
-  object PopupMenu1: TPopupMenu
-    Left = 304
-    Top = 224
-    object MenuItem1: TMenuItem
-      Action = actDelete
+  object MultiView1: TMultiView
+    TargetControl = TabControl1
+    MasterButton = SpeedButton1
+    Size.Width = 250.000000000000000000
+    Size.Height = 50.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 7
+    object SpeedButton2: TSpeedButton
+      Action = actContacts
+      Align = Top
       Enabled = True
-      ImageIndex = -1
+      Images = ImageList1
+      ImageIndex = 0
+      Size.Width = 50.000000000000000000
+      Size.Height = 49.000000000000000000
+      Size.PlatformDefault = False
+      StyleLookup = 'detailstoolbutton'
+    end
+    object SpeedButton5: TSpeedButton
+      Action = actCompanies
+      Align = Top
+      Enabled = True
+      Images = ImageList1
+      ImageIndex = 1
+      Position.Y = 49.000000000000000000
+      Size.Width = 50.000000000000000000
+      Size.Height = 49.000000000000000000
+      Size.PlatformDefault = False
+      StyleLookup = 'detailstoolbutton'
     end
   end
   object bindsrcContacts: TPrototypeBindSource
@@ -262,6 +489,11 @@ object MainView: TMainView
       item
         Name = 'Phone'
         Generator = 'PathData'
+        ReadOnly = False
+      end
+      item
+        Name = 'Company'
+        Generator = 'BitmapNames'
         ReadOnly = False
       end>
     ScopeMappings = <>
@@ -306,8 +538,40 @@ object MainView: TMainView
       Component = Label6
       ComponentProperty = 'Text'
     end
+    object LinkListControlToField2: TLinkListControlToField
+      Category = 'Quick Bindings'
+      DataSource = bindsrcCompanies
+      FieldName = 'Name'
+      Control = ListView2
+      FillExpressions = <>
+      FillHeaderExpressions = <>
+      FillBreakGroups = <>
+    end
+    object LinkPropertyToFieldText4: TLinkPropertyToField
+      Category = 'Quick Bindings'
+      DataSource = bindsrcCompanies
+      FieldName = 'Name'
+      Component = Label8
+      ComponentProperty = 'Text'
+    end
+    object LinkPropertyToFieldText5: TLinkPropertyToField
+      Category = 'Quick Bindings'
+      DataSource = bindsrcCompanies
+      FieldName = 'Web'
+      Component = Label7
+      ComponentProperty = 'Text'
+    end
+    object LinkPropertyToFieldText6: TLinkPropertyToField
+      Category = 'Quick Bindings'
+      DataSource = bindsrcContacts
+      FieldName = 'Company'
+      Component = Label10
+      ComponentProperty = 'Text'
+      OnAssigningValue = LinkPropertyToFieldText6AssigningValue
+    end
   end
   object ActionList1: TActionList
+    Images = ImageList1
     Left = 392
     Top = 296
     object actAdd: TAction
@@ -322,5 +586,102 @@ object MainView: TMainView
       Text = 'Delete'
       OnExecute = actDeleteExecute
     end
+    object actContacts: TAction
+      Text = 'Contacts'
+      ImageIndex = 0
+      OnExecute = actContactsExecute
+      ImageIndex = 0
+    end
+    object actCompanies: TAction
+      Text = 'Companies'
+      ImageIndex = 1
+      OnExecute = actCompaniesExecute
+      ImageIndex = 1
+    end
+  end
+  object ImageList1: TImageList
+    Source = <
+      item
+        MultiResBitmap = <
+          item
+            Scale = 3.000000000000000000
+            Width = 30
+            Height = 30
+            PNG = {
+              89504E470D0A1A0A0000000D494844520000001E0000001E08060000003B30AE
+              A2000000017352474200AECE1CE90000000467414D410000B18F0BFC61050000
+              008B49444154484BED92510A80201044AD0E50F7BF5707E806DDA076B1FC9031
+              A65684641F0C8A6213FAC25F58254721BA47335C238B163C417F6FBCC62F68C9
+              DB1F4F588A4D74534C0B575B2E04ECA82D175A83B85C37936493E4B254A3F41E
+              B3648F5333B083BD6A3DBCC469028984D6202E5733D862353A970D994EDBEF72
+              35C3E52AE1729971B97A278413FFE1268F1D2BD9450000000049454E44AE4260
+              82}
+            FileName = 'Z:\code\repos\public\crmvvm\company_30.png'
+          end>
+        Name = 'company'
+      end
+      item
+        MultiResBitmap = <
+          item
+            Scale = 3.000000000000000000
+            Width = 30
+            Height = 30
+            PNG = {
+              89504E470D0A1A0A0000000D494844520000001E0000001E08060000003B30AE
+              A2000000017352474200AECE1CE90000000467414D410000B18F0BFC61050000
+              016349444154484BD5963D4A04411046478D04236F2018098220088220780041
+              30153C8360E419BC81A960E401D6C4C84830303732520441100441BF273530EB
+              D6F4CF4CCF8A0FDE563353D5B5BDDBBB3DD57F61475EC85BF96132E61AF78A33
+              2FCFE5574472C82DC699F41A79925B840DE93508B92E83CC5A0C71603187438B
+              ADA4348EBE7B872E35133C49EFE30CF92883A4AC78D1620E0B165B99B1188215
+              74213877CA8A9F2DE610AD49697C6F3187684D4AE32B8B3974A9996049FEDEB5
+              31A929C2A5F41A78925B8C15C949E4356A4ACEAA2CCA91F49A353D9683702ABD
+              86C8BDE26CCB13C959BB254792BF5264CC35EE91436E6FF6E48DAC57F520F938
+              390468848CB9C6BD3A8F1A6AB3D99577B29EA8ABCCC15C51D891D7D29BA48FCC
+              D9BADB97E5ABF40A4BF826DDE6290F737D65238EC12679975E72493FE5CFF95E
+              1F123C13D37C68E6E43E8366E369B1C94BDD78CDE23418EBF522BDEF6408F9E5
+              FC1555F50D27770C2907C074300000000049454E44AE426082}
+            FileName = 'Z:\code\repos\public\crmvvm\user_30.png'
+          end>
+        Name = 'user'
+      end>
+    Destination = <
+      item
+        Layers = <
+          item
+            Name = 'user'
+            SourceRect.Right = 10.000000000000000000
+            SourceRect.Bottom = 10.000000000000000000
+          end>
+      end
+      item
+        Layers = <
+          item
+            Name = 'company'
+            SourceRect.Right = 10.000000000000000000
+            SourceRect.Bottom = 10.000000000000000000
+          end>
+      end>
+    Left = 312
+    Top = 328
+  end
+  object bindsrcCompanies: TPrototypeBindSource
+    AutoActivate = True
+    AutoPost = False
+    FieldDefs = <
+      item
+        Name = 'Name'
+        Generator = 'ColorsNames'
+        ReadOnly = False
+      end
+      item
+        Name = 'Web'
+        Generator = 'ContactNames'
+        ReadOnly = False
+      end>
+    ScopeMappings = <>
+    OnCreateAdapter = bindsrcCompaniesCreateAdapter
+    Left = 472
+    Top = 288
   end
 end

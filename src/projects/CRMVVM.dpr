@@ -15,7 +15,10 @@ uses
   MVVM.ViewModel in '..\mvvm\MVVM.ViewModel.pas',
   MVVM.View.FMX.Form in '..\mvvm\MVVM.View.FMX.Form.pas',
   Common.ObjectStore in '..\common\Common.ObjectStore.pas' {ObjectStore: TDataModule},
-  Common.Messages in '..\common\Common.Messages.pas';
+  Common.Messages in '..\common\Common.Messages.pas',
+  Model.Company in '..\model\Model.Company.pas',
+  ViewModel.Company in '..\viewmodels\ViewModel.Company.pas',
+  View.Company in '..\views\View.Company.pas' {CompanyView};
 
 {$R *.res}
 

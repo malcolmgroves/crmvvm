@@ -2,7 +2,7 @@ unit Model.Contact;
 
 interface
 uses
-  Generics.Collections, System.Classes, MVVM.Model, Aurelius.Mapping.Attributes;
+  Generics.Collections, System.Classes, MVVM.Model, Aurelius.Mapping.Attributes, Model.Company, Aurelius.Types.Nullable;
 
 type
   TContact = class;
@@ -22,6 +22,7 @@ type
     FLastname: string;
     FEmail: string;
     FPhone: string;
+    FCompany: TCompany;
     function GetIsValid: boolean;
   protected
   public
@@ -32,6 +33,7 @@ type
     property Email: string read FEmail write FEmail;
     property Phone: string read FPhone write FPhone;
     property IsValid: boolean read GetIsValid;
+    property Company: TCompany read FCompany write FCompany;
   end;
 
 
@@ -72,6 +74,7 @@ begin
     Lastname := TContact(Source).Lastname;
     Email := TContact(Source).Email;
     Phone := TContact(Source).Phone;
+    FCompany := TContact(Source).Company;
   end
   else
     inherited Assign(Source);
@@ -81,6 +84,7 @@ function TContact.GetIsValid: boolean;
 begin
   Result := (Length(Firstname) > 0) and ((Length(Email) > 0) or (Length(Phone) > 0));
 end;
+
 
 
 end.

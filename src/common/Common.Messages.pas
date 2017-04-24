@@ -7,6 +7,7 @@ uses
 type
 
   TOnContactsUpdated = class(TObjectMessage<TMainViewModel>);
+  TOnCompaniesUpdated = class(TObjectMessage<TMainViewModel>);
 
 function MessageManager : TMessageManager;
 

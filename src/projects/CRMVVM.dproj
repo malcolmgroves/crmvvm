@@ -334,6 +334,12 @@
             <DesignClass>TDataModule</DesignClass>
         </DCCReference>
         <DCCReference Include="..\common\Common.Messages.pas"/>
+        <DCCReference Include="..\model\Model.Company.pas"/>
+        <DCCReference Include="..\viewmodels\ViewModel.Company.pas"/>
+        <DCCReference Include="..\views\View.Company.pas">
+            <Form>CompanyView</Form>
+            <FormType>fmx</FormType>
+        </DCCReference>
         <BuildConfiguration Include="Release">
             <Key>Cfg_2</Key>
             <CfgParent>Base</CfgParent>

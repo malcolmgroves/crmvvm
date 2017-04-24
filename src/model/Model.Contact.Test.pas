@@ -55,7 +55,7 @@ type
 
 implementation
 uses
-  Model.Exceptions, SysUtils;
+  Model.Exceptions, SysUtils, Model.Company;
 
 procedure TContactTest.Setup;
 begin
@@ -71,16 +71,22 @@ end;
 procedure TContactTest.TestAssign;
 var
   LContact : TContact;
+  LCompany : TCompany;
 begin
   LContact := TContact.Create;
   try
+    LCompany := TCompany.Create;
+    LCompany.Name := 'Acme';
+    LContact.Company := LCompany;
     LContact.Firstname := 'Barney';
     LContact.Lastname := 'Rubble';
     FContact.Assign(LContact);
     Assert.AreEqual(LContact.Firstname, FContact.Firstname);
     Assert.AreEqual(LContact.Lastname, FContact.Lastname);
+    Assert.AreEqual(LCompany.Name, FContact.Company.Name);
   finally
     LContact.Free;
+    LCompany.Free;
   end;
 end;
 

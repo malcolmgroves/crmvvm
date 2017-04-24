@@ -142,6 +142,8 @@
         <DCCReference Include="..\model\Model.Contact.Test.pas"/>
         <DCCReference Include="..\viewmodels\ViewModel.Contact.Test.pas"/>
         <DCCReference Include="..\viewmodels\ViewModel.Main.Test.pas"/>
+        <DCCReference Include="..\model\Model.Company.Test.pas"/>
+        <DCCReference Include="..\viewmodels\ViewModel.Company.Test.pas"/>
         <BuildConfiguration Include="Release">
             <Key>Cfg_2</Key>
             <CfgParent>Base</CfgParent>

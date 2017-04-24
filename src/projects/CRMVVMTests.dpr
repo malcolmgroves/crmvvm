@@ -13,7 +13,9 @@ uses
   DUnitX.TestFramework,
   Model.Contact.Test in '..\model\Model.Contact.Test.pas',
   ViewModel.Contact.Test in '..\viewmodels\ViewModel.Contact.Test.pas',
-  ViewModel.Main.Test in '..\viewmodels\ViewModel.Main.Test.pas';
+  ViewModel.Main.Test in '..\viewmodels\ViewModel.Main.Test.pas',
+  Model.Company.Test in '..\model\Model.Company.Test.pas',
+  ViewModel.Company.Test in '..\viewmodels\ViewModel.Company.Test.pas';
 
 var
   runner : ITestRunner;

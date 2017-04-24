@@ -3,7 +3,7 @@ object ContactView: TContactView
   Top = 0
   ActiveControl = Edit4
   Caption = 'Form1'
-  ClientHeight = 354
+  ClientHeight = 386
   ClientWidth = 640
   FormFactor.Width = 320
   FormFactor.Height = 480
@@ -16,7 +16,7 @@ object ContactView: TContactView
     Margins.Right = 8.000000000000000000
     Margins.Bottom = 8.000000000000000000
     Position.X = 8.000000000000000000
-    Position.Y = 306.000000000000000000
+    Position.Y = 338.000000000000000000
     Size.Width = 624.000000000000000000
     Size.Height = 40.000000000000000000
     Size.PlatformDefault = False
@@ -57,7 +57,7 @@ object ContactView: TContactView
     Padding.Right = 8.000000000000000000
     Padding.Bottom = 8.000000000000000000
     Size.Width = 640.000000000000000000
-    Size.Height = 306.000000000000000000
+    Size.Height = 338.000000000000000000
     Size.PlatformDefault = False
     TabOrder = 2
     TabStop = False
@@ -70,7 +70,7 @@ object ContactView: TContactView
       Padding.Bottom = 8.000000000000000000
       Sides = []
       Size.Width = 624.000000000000000000
-      Size.Height = 290.000000000000000000
+      Size.Height = 322.000000000000000000
       Size.PlatformDefault = False
       object Layout2: TLayout
         Align = Top
@@ -321,6 +321,257 @@ object ContactView: TContactView
           end
         end
       end
+      object Layout18: TLayout
+        Align = Top
+        Position.X = 8.000000000000000000
+        Position.Y = 265.000000000000000000
+        Size.Width = 608.000000000000000000
+        Size.Height = 50.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 6
+        TabStop = False
+        object Layout19: TLayout
+          Align = Top
+          Size.Width = 608.000000000000000000
+          Size.Height = 50.000000000000000000
+          Size.PlatformDefault = False
+          TabOrder = 0
+          TabStop = False
+          object Layout20: TLayout
+            Align = Left
+            Size.Width = 89.000000000000000000
+            Size.Height = 50.000000000000000000
+            Size.PlatformDefault = False
+            TabOrder = 0
+            object Label6: TLabel
+              Align = Client
+              Size.Width = 89.000000000000000000
+              Size.Height = 50.000000000000000000
+              Size.PlatformDefault = False
+              Text = 'Company:'
+              TabOrder = 0
+            end
+          end
+          object Layout21: TLayout
+            Align = Client
+            Padding.Top = 8.000000000000000000
+            Padding.Bottom = 8.000000000000000000
+            Size.Width = 519.000000000000000000
+            Size.Height = 50.000000000000000000
+            Size.PlatformDefault = False
+            TabOrder = 1
+            TabStop = False
+            object ComboBox1: TComboBox
+              Align = Client
+              Items.Strings = (
+                'Darkgoldenrod'
+                'Ivory'
+                'Mediumaquamarine'
+                'Mediumvioletred'
+                'Ghostwhite'
+                'Sandybrown'
+                'Cornflowerblue'
+                'Blue'
+                'Greenyellow'
+                'Powderblue'
+                'Lightgoldenrodyellow'
+                'Lightsteelblue'
+                'Mediumseagreen'
+                'LtGray'
+                'Plum'
+                'Steelblue'
+                'Navy'
+                'Mediumslateblue'
+                'Navajowhite'
+                'Chartreuse'
+                'Skyblue'
+                'Darkseagreen'
+                'Goldenrod'
+                'Salmon'
+                'Thistle'
+                'Slateblue'
+                'Lawngreen'
+                'Orangered'
+                'Dodgerblue'
+                'Mediumturquoise'
+                'Seagreen'
+                'Lavenderblush'
+                'Darkcyan'
+                'MoneyGreen'
+                'Darkred'
+                'Floralwhite'
+                'Azure'
+                'Bisque'
+                'Darkblue'
+                'Mediumorchid'
+                'Darkkhaki'
+                'Lightcoral'
+                'Hotpink'
+                'Purple'
+                'Mediumspringgreen'
+                'Forestgreen'
+                'Lime'
+                'Lightgrey'
+                'Lavender'
+                'Sienna'
+                'Gold'
+                'Burlywood'
+                'Cadetblue'
+                'Wheat'
+                'Grey'
+                'Dimgrey'
+                'Oldlace'
+                'Deepskyblue'
+                'Gainsboro'
+                'Blueviolet'
+                'Mediumblue'
+                'Mintcream'
+                'Pink'
+                'Indianred'
+                'Tomato'
+                'Maroon'
+                'Cornsilk'
+                'Limegreen'
+                'Tan'
+                'Lightseagreen'
+                'Lightcyan'
+                'Whitesmoke'
+                'Lightskyblue'
+                'Papayawhip'
+                'Midnightblue'
+                'Palegoldenrod'
+                'Teal'
+                'Mediumpurple'
+                'Chocolate'
+                'Magenta'
+                'Seashell'
+                'Lightpink'
+                'Aquamarine'
+                'Slategrey'
+                'Darkolivegreen'
+                'Lightsalmon'
+                'Olive'
+                'Green'
+                'Crimson'
+                'Snow'
+                'Orchid'
+                'Mistyrose'
+                'Lightgreen'
+                'Red'
+                'Moccasin'
+                'Turquoise'
+                'Khaki'
+                'Coral'
+                'Lightblue'
+                'Blanchedalmond'
+                'Lightslategrey'
+                'Darkslateblue'
+                'Darkorchid'
+                'Honeydew'
+                'Firebrick'
+                'LegacySkyBlue'
+                'Black'
+                'Palegreen'
+                'Darkviolet'
+                'Paleturquoise'
+                'Orange'
+                'Beige'
+                'Darksalmon'
+                'Violet'
+                'Yellowgreen'
+                'Darkslategrey'
+                'Peachpuff'
+                'White'
+                'Darkturquoise'
+                'Lemonchiffon'
+                'Darkorange'
+                'Cyan'
+                'Antiquewhite'
+                'Darkmagenta'
+                'Darkgrey'
+                'Cream'
+                'Peru'
+                'Linen'
+                'Brown'
+                'Yellow'
+                'Springgreen'
+                'Deeppink'
+                'MedGray'
+                'Rosybrown'
+                'Saddlebrown'
+                'Olivedrab'
+                'Lightyellow'
+                'Royalblue'
+                'Palevioletred'
+                'Indigo'
+                'Darkgreen'
+                'Darkgoldenrod'
+                'Ivory'
+                'Mediumaquamarine'
+                'Mediumvioletred'
+                'Ghostwhite'
+                'Sandybrown'
+                'Cornflowerblue'
+                'Blue'
+                'Greenyellow'
+                'Powderblue'
+                'Lightgoldenrodyellow'
+                'Lightsteelblue'
+                'Mediumseagreen'
+                'LtGray'
+                'Plum'
+                'Steelblue'
+                'Navy'
+                'Mediumslateblue'
+                'Navajowhite'
+                'Chartreuse'
+                'Skyblue'
+                'Darkseagreen'
+                'Goldenrod'
+                'Salmon'
+                'Thistle'
+                'Slateblue'
+                'Lawngreen'
+                'Orangered'
+                'Dodgerblue'
+                'Mediumturquoise'
+                'Seagreen'
+                'Lavenderblush'
+                'Darkcyan'
+                'MoneyGreen'
+                'Darkred'
+                'Floralwhite'
+                'Azure'
+                'Bisque'
+                'Darkblue'
+                'Mediumorchid'
+                'Darkkhaki'
+                'Lightcoral'
+                'Hotpink'
+                'Purple'
+                'Mediumspringgreen'
+                'Forestgreen'
+                'Lime'
+                'Lightgrey'
+                'Lavender'
+                'Sienna'
+                'Gold'
+                'Burlywood'
+                'Cadetblue'
+                'Wheat'
+                'Grey'
+                'Dimgrey'
+                'Oldlace'
+                'Deepskyblue'
+                'Gainsboro')
+              Size.Width = 519.000000000000000000
+              Size.Height = 34.000000000000000000
+              Size.PlatformDefault = False
+              TabOrder = 2
+            end
+          end
+        end
+      end
     end
   end
   object ActionList1: TActionList
@@ -359,11 +610,17 @@ object ContactView: TContactView
         Name = 'Phone'
         Generator = 'PathData'
         ReadOnly = False
+      end
+      item
+        Name = 'Company'
+        FieldType = ftInteger
+        Generator = 'Integers'
+        ReadOnly = False
       end>
     ScopeMappings = <>
     OnCreateAdapter = bindsrcContactCreateAdapter
-    Left = 304
-    Top = 160
+    Left = 464
+    Top = 32
   end
   object BindingsList1: TBindingsList
     Methods = <>
@@ -406,5 +663,40 @@ object ContactView: TContactView
       CustomFormat = 'Owner.Firstname.Value + " " + Owner.Lastname.Value'
       ComponentProperty = 'Text'
     end
+    object LinkFillControlToField1: TLinkFillControlToField
+      Category = 'Quick Bindings'
+      DataSource = bindsrcContact
+      FieldName = 'Company'
+      Control = ComboBox1
+      OnAssigningValue = LinkFillControlToField1AssigningValue
+      Track = True
+      FillDataSource = bindsrcCompanies
+      FillValueFieldName = 'ID'
+      FillDisplayFieldName = 'Name'
+      AutoFill = True
+      FillExpressions = <>
+      FillHeaderExpressions = <>
+      FillBreakGroups = <>
+    end
+  end
+  object bindsrcCompanies: TPrototypeBindSource
+    AutoActivate = True
+    AutoPost = False
+    FieldDefs = <
+      item
+        Name = 'Name'
+        Generator = 'ColorsNames'
+        ReadOnly = False
+      end
+      item
+        Name = 'ID'
+        FieldType = ftUInteger
+        Generator = 'AlphaColors'
+        ReadOnly = False
+      end>
+    ScopeMappings = <>
+    OnCreateAdapter = bindsrcCompaniesCreateAdapter
+    Left = 568
+    Top = 32
   end
 end
