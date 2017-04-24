@@ -21,14 +21,18 @@ type
     procedure TestEditContactDelegation;
     [Test]
     procedure TestEditContactDelegationAfterCancel;
+    [Test]
+    procedure TestDeleteConfirmed;
+    procedure TestDeleteUnconfirmed;
   end;
 
 implementation
 uses
-  Model.Contact, ViewModel.Contact;
+  Model.Contact, ViewModel.Contact, Common.ObjectStore;
 
 procedure TMainViewModelTest.Setup;
 begin
+  CreateObjectStore(True);
   FViewModel := TMainViewModel.Create;
   FViewModel.OnEditContact := procedure(ViewModel : TMainViewModel; ContactViewModel : TContactViewModel)
                               begin
@@ -39,6 +43,7 @@ end;
 procedure TMainViewModelTest.TearDown;
 begin
   FViewModel.Free;
+  DestroyObjectStore;
 end;
 
 procedure TMainViewModelTest.TestAdd;
@@ -46,46 +51,70 @@ var
   LCount : Integer;
 begin
   LCount := FViewModel.ContactCount;
-  FViewModel.Add;
+  FViewModel.NewContact;
   Assert.AreEqual(LCount + 1, FViewModel.ContactCount);
+end;
+
+procedure TMainViewModelTest.TestDeleteConfirmed;
+var
+  LContact : TContact;
+  LCount : Integer;
+begin
+  LContact := FviewModel.NewContact;
+  LCount := FViewModel.ContactCount;
+
+  FViewModel.OnConfirmDeleteContact := function(ViewModel : TMainViewModel; Contact : TContact): boolean
+                                       begin
+                                         Result := True;
+                                       end;
+  FViewModel.DeleteContact(LContact);
+  Assert.AreEqual(LCount - 1, FViewModel.ContactCount);
+end;
+
+procedure TMainViewModelTest.TestDeleteUnconfirmed;
+var
+  LContact : TContact;
+  LCount : Integer;
+begin
+  LContact := FviewModel.NewContact;
+  LCount := FViewModel.ContactCount;
+
+  FViewModel.OnConfirmDeleteContact := function(ViewModel : TMainViewModel; Contact : TContact): boolean
+                                       begin
+                                         Result := False;
+                                       end;
+  FViewModel.DeleteContact(LContact);
+  Assert.AreEqual(LCount, FViewModel.ContactCount);
 end;
 
 procedure TMainViewModelTest.TestEditContactDelegation;
 var
   LContact : TContact;
 begin
-  LContact := TContact.Create;
-  try
-    LContact.FirstName := 'Fred';
-    FViewModel.OnEditContact := procedure(ViewModel : TMainViewModel; ContactViewModel : TContactViewModel)
-                                begin
-                                  ContactViewModel.Contact.Firstname := 'Barney';
-                                  ContactViewModel.Save;
-                                end;
-    FViewModel.EditContact(LContact);
-    Assert.AreEqual('Barney', LContact.Firstname);
-  finally
-    LContact.Free;
-  end;
+  LContact := FViewModel.NewContact;
+  FViewModel.OnEditContact := procedure(ViewModel : TMainViewModel; ContactViewModel : TContactViewModel)
+                              begin
+                                ContactViewModel.Contact.Firstname := 'Barney';
+                                ContactViewModel.Save;
+                              end;
+  FviewModel.EditContact(LContact);
+  Assert.AreEqual('Barney', LContact.Firstname);
 end;
 
 procedure TMainViewModelTest.TestEditContactDelegationAfterCancel;
 var
   LContact : TContact;
 begin
-  LContact := TContact.Create;
-  try
-    LContact.FirstName := 'Fred';
-    FViewModel.OnEditContact := procedure(ViewModel : TMainViewModel; ContactViewModel : TContactViewModel)
-                                begin
-                                  ContactViewModel.Contact.Firstname := 'Barney';
-                                  ContactViewModel.Cancel;
-                                end;
-    FViewModel.EditContact(LContact);
-    Assert.AreEqual('Fred', LContact.Firstname);
-  finally
-    LContact.Free;
-  end;
+  LCOntact := TContact.Create;
+  LContact.Firstname := 'Fred';
+  FViewModel.AddContact(LContact);
+  FViewModel.OnEditContact := procedure(ViewModel : TMainViewModel; ContactViewModel : TContactViewModel)
+                              begin
+                                ContactViewModel.Contact.Firstname := 'Barney';
+                                ContactViewModel.Cancel;
+                              end;
+  FViewModel.EditContact(LContact);
+  Assert.AreEqual('Fred', LContact.Firstname);
 end;
 
 initialization

@@ -52,13 +52,16 @@ object MainView: TMainView
       FooterAppearanceClassName = 'TListHeaderObjects'
       ItemIndex = 0
       Align = Left
+      PopupMenu = PopupMenu1
       Size.Width = 241.000000000000000000
       Size.Height = 432.000000000000000000
       Size.PlatformDefault = False
       TabOrder = 0
+      ItemAppearanceObjects.ItemObjects.Accessory.AccessoryType = Detail
       ItemAppearanceObjects.ItemObjects.Accessory.Visible = False
       StyleLookup = 'listviewstyle'
       OnDblClick = actEditExecute
+      SelectionCrossfade = True
     end
     object Splitter1: TSplitter
       Align = Left
@@ -222,6 +225,15 @@ object MainView: TMainView
       end
     end
   end
+  object PopupMenu1: TPopupMenu
+    Left = 304
+    Top = 224
+    object MenuItem1: TMenuItem
+      Action = actDelete
+      Enabled = True
+      ImageIndex = -1
+    end
+  end
   object bindsrcContacts: TPrototypeBindSource
     AutoActivate = True
     AutoPost = False
@@ -305,6 +317,10 @@ object MainView: TMainView
     object actEdit: TAction
       Text = 'Edit'
       OnExecute = actEditExecute
+    end
+    object actDelete: TAction
+      Text = 'Delete'
+      OnExecute = actDeleteExecute
     end
   end
 end

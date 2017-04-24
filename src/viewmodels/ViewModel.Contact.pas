@@ -9,7 +9,8 @@ type
   private
     FOriginalContact : TContact;
     FContact : TContact;
-    FOnSaveContact: TOnSaveModelObject<TContactViewModel, TContact>;
+    FOnSaveContact: TOnModelObjectNotify<TContactViewModel, TContact>;
+    FOnCancelContact: TOnModelObjectNotify<TContactViewModel, TContact>;
     function GetCanSave: Boolean;
   public
     constructor Create(AContact : TContact); virtual;
@@ -18,7 +19,8 @@ type
     procedure Cancel;
     property Contact : TContact read FContact;
     property CanSave : Boolean read GetCanSave;
-    property OnSaveContact : TOnSaveModelObject<TContactViewModel, TContact> read FOnSaveContact write FOnSaveContact;
+    property OnSaveContact : TOnModelObjectNotify<TContactViewModel, TContact> read FOnSaveContact write FOnSaveContact;
+    property OnCancelContact : TOnModelObjectNotify<TContactViewModel, TContact> read FOnCancelContact write FOnCancelContact;
   end;
 
 implementation
@@ -27,7 +29,9 @@ implementation
 
 procedure TContactViewModel.Cancel;
 begin
-  // don't assign the staging back to FTask.
+  // don't assign the staging back to FOriginalContact
+  if Assigned(FOnCancelContact) then
+    FOnCancelContact(self, FOriginalContact);
 end;
 
 constructor TContactViewModel.Create(AContact: TContact);

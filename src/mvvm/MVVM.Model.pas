@@ -13,6 +13,7 @@ type
     destructor Destroy; override;
     function GetEnumerable: TEnumerable<TModelObject>;
     function Contains(Item : TModelObject) : boolean;
+    procedure LoadFromList(List : TList<TModelObject>);
     property Count : Integer read GetCount;
   end;
 
@@ -50,6 +51,15 @@ end;
 function TObjectEnumerable<TModelObject>.GetEnumerable: TEnumerable<TModelObject>;
 begin
   Result := FObjects;
+end;
+
+procedure TObjectEnumerable<TModelObject>.LoadFromList(
+  List: TList<TModelObject>);
+var
+  LModelObject : TModelObject;
+begin
+  for LModelObject in List do
+    FObjects.Add(LModelObject);
 end;
 
 end.

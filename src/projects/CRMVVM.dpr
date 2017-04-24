@@ -13,7 +13,8 @@ uses
   ViewModel.Contact in '..\viewmodels\ViewModel.Contact.pas',
   MVVM.Model in '..\mvvm\MVVM.Model.pas',
   MVVM.ViewModel in '..\mvvm\MVVM.ViewModel.pas',
-  MVVM.View.FMX.Form in '..\mvvm\MVVM.View.FMX.Form.pas';
+  MVVM.View.FMX.Form in '..\mvvm\MVVM.View.FMX.Form.pas',
+  Common.ObjectStore in '..\common\Common.ObjectStore.pas' {ObjectStore: TDataModule};
 
 {$R *.res}
 
@@ -21,5 +22,6 @@ begin
   ReportMemoryLeaksOnShutdown := True;
   Application.Initialize;
   Application.CreateForm(TMainView, MainView);
+  CreateObjectStore;
   Application.Run;
 end.

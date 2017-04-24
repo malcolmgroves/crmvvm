@@ -28,7 +28,7 @@ type
   TContactsTest = class(TObject)
   private
     FContacts : TContacts;
-    function CreateContact(const ID : Integer; const Firstname, Lastname : string): TContact;
+    function CreateContact(const Firstname, Lastname : string): TContact;
   public
     [Setup]
     procedure Setup;
@@ -44,6 +44,12 @@ type
     procedure TestAddNil;
     [Test]
     procedure TestCountAfterAdd;
+    [Test]
+    procedure TestDelete;
+    [Test]
+    procedure TestDeleteUnknown;
+    [Test]
+    procedure TestDeleteNil;
   end;
 
 
@@ -90,13 +96,12 @@ end;
 
 { TContactsTest }
 
-function TContactsTest.CreateContact(const ID: Integer; const Firstname,
+function TContactsTest.CreateContact(const Firstname,
   Lastname: string): TContact;
 var
   LContact : TContact;
 begin
   LContact := TCOntact.Create;
-  LContact.ID := ID;
   LContact.Firstname := Firstname;
   LContact.Lastname := Lastname;
   Result := LContact;
@@ -131,7 +136,7 @@ var
   LContact : TContact;
   LCount : Integer;
 begin
-  LContact := CreateContact(1, 'Fred', 'Flintstone');
+  LContact := CreateContact('Fred', 'Flintstone');
   FContacts.AddContact(LContact);
   LCount := FContacts.Count;
   Assert.WillRaise(procedure
@@ -145,7 +150,7 @@ procedure TContactsTest.TestContainsAfterAdd;
 var
   LContact : TContact;
 begin
-  LContact := CreateContact(1, 'Fred', 'Flintstone');
+  LContact := CreateContact('Fred', 'Flintstone');
   FContacts.AddContact(LContact);
   Assert.IsTrue(FContacts.Contains(LContact));
 end;
@@ -154,7 +159,7 @@ procedure TContactsTest.TestContainsNoAdd;
 var
   LContact : TContact;
 begin
-  LContact := CreateContact(1, 'Fred', 'Flintstone');
+  LContact := CreateContact('Fred', 'Flintstone');
   Assert.IsFalse(FContacts.Contains(LContact));
 end;
 
@@ -164,9 +169,50 @@ var
   LCount : Integer;
 begin
   LCount := FContacts.Count;
-  LContact := CreateContact(1, 'Fred', 'Flintstone');
+  LContact := CreateContact('Fred', 'Flintstone');
   FContacts.AddContact(LContact);
   Assert.AreEqual(LCount + 1, FContacts.Count);
+end;
+
+procedure TContactsTest.TestDelete;
+var
+  LContact : TContact;
+  LCount : Integer;
+begin
+  LContact := CreateContact('Fred', 'Flintstone');
+  FContacts.AddContact(LContact);
+  LCount := FContacts.Count;
+
+  FContacts.DeleteContact(LContact);
+  Assert.AreEqual(LCount - 1, FContacts.Count);
+end;
+
+procedure TContactsTest.TestDeleteNil;
+var
+  LContact : TContact;
+  LCount : Integer;
+begin
+  LContact := nil;
+  LCount := FContacts.Count;
+  Assert.WillRaise(procedure
+                   begin
+                     FContacts.DeleteContact(LContact);
+                   end, NilParamException);
+  Assert.AreEqual(LCount, FContacts.Count);
+end;
+
+procedure TContactsTest.TestDeleteUnknown;
+var
+  LContact : TContact;
+  LCount : Integer;
+begin
+  LContact := CreateContact('Fred', 'Flintstone');
+  LCount := FContacts.Count;
+  Assert.WillRaise(procedure
+                   begin
+                     FContacts.DeleteContact(LContact);
+                   end, UnknownObjectException);
+  Assert.AreEqual(LCount, FContacts.Count);
 end;
 
 initialization

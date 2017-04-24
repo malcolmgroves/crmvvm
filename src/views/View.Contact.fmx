@@ -1,6 +1,7 @@
 object ContactView: TContactView
   Left = 0
   Top = 0
+  ActiveControl = Edit4
   Caption = 'Form1'
   ClientHeight = 354
   ClientWidth = 640
@@ -19,7 +20,8 @@ object ContactView: TContactView
     Size.Width = 624.000000000000000000
     Size.Height = 40.000000000000000000
     Size.PlatformDefault = False
-    TabOrder = 0
+    TabOrder = 1
+    TabStop = False
     object Button1: TButton
       Action = actCancel
       Align = Right
@@ -32,7 +34,7 @@ object ContactView: TContactView
       Size.Height = 40.000000000000000000
       Size.PlatformDefault = False
       StyleLookup = 'buttonstyle'
-      TabOrder = 1
+      TabOrder = 4
     end
     object Button2: TButton
       Action = actSave
@@ -45,7 +47,7 @@ object ContactView: TContactView
       Size.Height = 40.000000000000000000
       Size.PlatformDefault = False
       StyleLookup = 'buttonstyle'
-      TabOrder = 0
+      TabOrder = 3
     end
   end
   object Layout1: TLayout
@@ -57,7 +59,8 @@ object ContactView: TContactView
     Size.Width = 640.000000000000000000
     Size.Height = 306.000000000000000000
     Size.PlatformDefault = False
-    TabOrder = 3
+    TabOrder = 2
+    TabStop = False
     object Rectangle1: TRectangle
       Align = Client
       Fill.Color = claWhite
@@ -77,12 +80,14 @@ object ContactView: TContactView
         Size.Height = 50.000000000000000000
         Size.PlatformDefault = False
         TabOrder = 0
+        TabStop = False
         object Layout6: TLayout
           Align = Top
           Size.Width = 608.000000000000000000
           Size.Height = 50.000000000000000000
           Size.PlatformDefault = False
           TabOrder = 0
+          TabStop = False
           object Layout7: TLayout
             Align = Left
             Size.Width = 89.000000000000000000
@@ -106,10 +111,11 @@ object ContactView: TContactView
             Size.Height = 50.000000000000000000
             Size.PlatformDefault = False
             TabOrder = 1
+            TabStop = False
             object Edit1: TEdit
               Touch.InteractiveGestures = [LongTap, DoubleTap]
               Align = Client
-              TabOrder = 0
+              TabOrder = 2
               Text = 
                 'ipsum mi vehicula purus, eu congue sapien orci eu est. Morbi bla' +
                 'ndit volutpat ante, non ultrices eros semper at. Fusce leo leo, ' +
@@ -155,6 +161,7 @@ object ContactView: TContactView
         Size.Height = 50.000000000000000000
         Size.PlatformDefault = False
         TabOrder = 2
+        TabStop = False
         object Label3: TLabel
           Align = Client
           Size.Width = 608.000000000000000000
@@ -163,6 +170,7 @@ object ContactView: TContactView
           StyleLookup = 'listboxheaderlabel'
           Text = 'Darkgoldenrod Darkgoldenrod'
           TabOrder = 0
+          TabStop = False
         end
       end
       object Layout5: TLayout
@@ -173,6 +181,7 @@ object ContactView: TContactView
         Size.Height = 50.000000000000000000
         Size.PlatformDefault = False
         TabOrder = 3
+        TabStop = False
         object Layout9: TLayout
           Align = Left
           Size.Width = 89.000000000000000000
@@ -196,10 +205,11 @@ object ContactView: TContactView
           Size.Height = 50.000000000000000000
           Size.PlatformDefault = False
           TabOrder = 1
+          TabStop = False
           object Edit2: TEdit
             Touch.InteractiveGestures = [LongTap, DoubleTap]
             Align = Client
-            TabOrder = 0
+            TabOrder = 3
             Text = 'M 341.236,311.738 L 305.830,346.113 L 305.830,277.363 Z '
             Size.Width = 519.000000000000000000
             Size.Height = 34.000000000000000000
@@ -215,12 +225,14 @@ object ContactView: TContactView
         Size.Height = 50.000000000000000000
         Size.PlatformDefault = False
         TabOrder = 4
+        TabStop = False
         object Layout11: TLayout
           Align = Top
           Size.Width = 608.000000000000000000
           Size.Height = 50.000000000000000000
           Size.PlatformDefault = False
           TabOrder = 0
+          TabStop = False
           object Layout12: TLayout
             Align = Left
             Size.Width = 89.000000000000000000
@@ -244,10 +256,11 @@ object ContactView: TContactView
             Size.Height = 50.000000000000000000
             Size.PlatformDefault = False
             TabOrder = 1
+            TabStop = False
             object Edit3: TEdit
               Touch.InteractiveGestures = [LongTap, DoubleTap]
               Align = Client
-              TabOrder = 0
+              TabOrder = 1
               Text = 'Darkgoldenrod'
               Size.Width = 519.000000000000000000
               Size.Height = 34.000000000000000000
@@ -264,12 +277,14 @@ object ContactView: TContactView
         Size.Height = 50.000000000000000000
         Size.PlatformDefault = False
         TabOrder = 5
+        TabStop = False
         object Layout15: TLayout
           Align = Top
           Size.Width = 608.000000000000000000
           Size.Height = 50.000000000000000000
           Size.PlatformDefault = False
           TabOrder = 0
+          TabStop = False
           object Layout16: TLayout
             Align = Left
             Size.Width = 89.000000000000000000
@@ -293,6 +308,7 @@ object ContactView: TContactView
             Size.Height = 50.000000000000000000
             Size.PlatformDefault = False
             TabOrder = 1
+            TabStop = False
             object Edit4: TEdit
               Touch.InteractiveGestures = [LongTap, DoubleTap]
               Align = Client

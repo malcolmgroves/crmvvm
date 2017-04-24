@@ -10,7 +10,7 @@ uses
   System.Rtti, System.Bindings.Outputs, Fmx.Bind.Editors, Data.Bind.EngExt,
   Fmx.Bind.DBEngExt, FMX.Layouts, FMX.StdCtrls, FMX.Controls.Presentation,
   FMX.MultiView, System.Actions, FMX.ActnList, EnumerableAdapter, Model.Contact,
-  FMX.Objects, MVVM.View.FMX.Form;
+  FMX.Objects, MVVM.View.FMX.Form, FMX.Menus;
 
 type
   TMainView = class(TFormView<TMainViewModel>)
@@ -45,13 +45,16 @@ type
     LinkPropertyToFieldText3: TLinkPropertyToField;
     SpeedButton4: TSpeedButton;
     actEdit: TAction;
+    actDelete: TAction;
+    PopupMenu1: TPopupMenu;
+    MenuItem1: TMenuItem;
     procedure bindsrcContactsCreateAdapter(Sender: TObject;
       var ABindSourceAdapter: TBindSourceAdapter);
     procedure actAddExecute(Sender: TObject);
     procedure actEditExecute(Sender: TObject);
     procedure FormCreate(Sender: TObject);
+    procedure actDeleteExecute(Sender: TObject);
   private
-    procedure RefreshBindings;
     function ContactAdapter: TEnumerableBindSourceAdapter<TContact>;
   end;
 
@@ -66,14 +69,6 @@ uses View.Contact, ViewModel.Contact;
 
 { TviewMain }
 
-procedure TMainView.RefreshBindings;
-begin
-  if ContactAdapter.GetEnumerable = nil then
-    ContactAdapter.SetEnumerable(ViewModel.Contacts)
-  else
-    ContactAdapter.Reload;
-end;
-
 function TMainView.ContactAdapter: TEnumerableBindSourceAdapter<TContact>;
 begin
   Result := TEnumerableBindSourceAdapter<TContact>(bindsrcContacts.InternalAdapter);
@@ -81,8 +76,6 @@ end;
 
 procedure TMainView.FormCreate(Sender: TObject);
 begin
-  ViewModel.CreateDummyData;
-  RefreshBindings;
   ViewModel.OnEditContact :=  procedure (ViewModel : TMainViewModel; ContactViewModel : TContactViewModel)
                               var
                                 LContactView : TContactView;
@@ -91,15 +84,28 @@ begin
                                 LContactView.ShowModal(procedure(ModalResult : TModalResult)
                                                        begin
                                                          ContactViewModel.Free;
-                                                         if ModalResult = mrOk then
-                                                           RefreshBindings;
+                                                         bindsrcContacts.Refresh;
                                                        end);
                               end;
+  ViewModel.OnConfirmDeleteContact := function (ViewModel : TMainViewModel; Contact : TContact) : boolean
+                                      begin
+                                        Result := MessageDlg(Format('Are you sure you want to delete %s %s?', [COntact.Firstname, COntact.Lastname]),
+                                                             TMsgDlgType.mtConfirmation, mbOKCancel, 0) = mrOK;
+                                      end;
+  ViewModel.OnContactsUpdated :=  procedure (ViewModel : TMainViewModel)
+                                  begin
+                                    ContactAdapter.Reload;
+                                  end;
 end;
 
 procedure TMainView.actAddExecute(Sender: TObject);
 begin
-  ViewModel.Add;
+  ViewModel.NewContact;
+end;
+
+procedure TMainView.actDeleteExecute(Sender: TObject);
+begin
+  ViewModel.DeleteContact(ContactAdapter.Current);
 end;
 
 procedure TMainView.actEditExecute(Sender: TObject);

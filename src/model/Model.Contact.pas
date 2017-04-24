@@ -2,17 +2,19 @@ unit Model.Contact;
 
 interface
 uses
-  Generics.Collections, System.Classes, MVVM.Model;
+  Generics.Collections, System.Classes, MVVM.Model, Aurelius.Mapping.Attributes;
 
 type
   TContact = class;
 
   TContacts = class(TObjectEnumerable<TContact>)
   public
-    procedure AddContact(Contact : TContact);
-    function AddNewContact : TContact;
+    function AddContact(Contact : TContact): Integer;
+    procedure DeleteContact(Contact : TContact);
   end;
 
+  [Entity]
+  [AutoMapping]
   TContact = class(TPersistent)
   private
     FID: integer;
@@ -37,7 +39,7 @@ implementation
 uses
   Model.Exceptions;
 
-procedure TContacts.AddContact(Contact: TContact);
+function TContacts.AddContact(Contact: TContact): Integer;
 begin
   if not Assigned(Contact) then
     raise NilParamException.Create('Contact passed in is not Assigned');
@@ -45,16 +47,18 @@ begin
   if Contains(Contact) then
     raise DuplicateObjectException.Create('ContactList already contains this Contact');
 
-  FObjects.Add(Contact);
+  Result := FObjects.Add(Contact);
 end;
 
-function TContacts.AddNewContact: TContact;
-var
-  LContact : TContact;
+procedure TContacts.DeleteContact(Contact: TContact);
 begin
-  LContact := TContact.Create;
-  AddContact(LContact);
-  Result := LContact;
+  if not Assigned(Contact) then
+    raise NilParamException.Create('Contact passed in is not Assigned');
+
+  if not Contains(Contact) then
+    raise UnknownObjectException.Create('ContactList does not contain this Contact');
+
+  FObjects.Delete(FObjects.IndexOf(Contact));
 end;
 
 { TContact }
@@ -77,5 +81,6 @@ function TContact.GetIsValid: boolean;
 begin
   Result := (Length(Firstname) > 0) and ((Length(Email) > 0) or (Length(Phone) > 0));
 end;
+
 
 end.

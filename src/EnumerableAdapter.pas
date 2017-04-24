@@ -101,6 +101,7 @@ begin
   SetEnumerable(AEnumerable);
 end;
 
+
 procedure TEnumerableBindSourceAdapter<T>.SetEnumerable(const AValue: TEnumerable<T>);
 begin
   FEnumerable := AValue;
