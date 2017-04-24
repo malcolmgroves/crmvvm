@@ -325,6 +325,9 @@
             <FormType>fmx</FormType>
         </DCCReference>
         <DCCReference Include="..\viewmodels\ViewModel.Contact.pas"/>
+        <DCCReference Include="..\mvvm\MVVM.Model.pas"/>
+        <DCCReference Include="..\mvvm\MVVM.ViewModel.pas"/>
+        <DCCReference Include="..\mvvm\MVVM.View.FMX.Form.pas"/>
         <BuildConfiguration Include="Release">
             <Key>Cfg_2</Key>
             <CfgParent>Base</CfgParent>

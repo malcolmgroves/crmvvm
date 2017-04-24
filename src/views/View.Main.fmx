@@ -7,7 +7,7 @@ object MainView: TMainView
   FormFactor.Width = 320
   FormFactor.Height = 480
   FormFactor.Devices = [Desktop]
-  OnDestroy = FormDestroy
+  OnCreate = FormCreate
   DesignerMasterStyle = 0
   object ToolBar1: TToolBar
     Size.Width = 640.000000000000000000
@@ -56,6 +56,7 @@ object MainView: TMainView
       Size.Height = 432.000000000000000000
       Size.PlatformDefault = False
       TabOrder = 0
+      ItemAppearanceObjects.ItemObjects.Accessory.Visible = False
       StyleLookup = 'listviewstyle'
       OnDblClick = actEditExecute
     end

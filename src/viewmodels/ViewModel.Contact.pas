@@ -2,16 +2,14 @@ unit ViewModel.Contact;
 
 interface
 uses
-  Model.Contact, Generics.Collections;
+  Model.Contact, Generics.Collections, MVVM.ViewModel;
 
 type
-  TContactViewModel = class;
-  TContactNotification = reference to procedure (Sender : TContactViewModel; Contact : TContact);
   TContactViewModel = class
   private
     FOriginalContact : TContact;
     FContact : TContact;
-    FOnSaveContact: TContactNotification;
+    FOnSaveContact: TOnSaveModelObject<TContactViewModel, TContact>;
     function GetCanSave: Boolean;
   public
     constructor Create(AContact : TContact); virtual;
@@ -20,7 +18,7 @@ type
     procedure Cancel;
     property Contact : TContact read FContact;
     property CanSave : Boolean read GetCanSave;
-    property OnSaveContact : TContactNotification read FOnSaveContact write FOnSaveContact;
+    property OnSaveContact : TOnSaveModelObject<TContactViewModel, TContact> read FOnSaveContact write FOnSaveContact;
   end;
 
 implementation

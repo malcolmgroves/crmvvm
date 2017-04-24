@@ -2,7 +2,7 @@ unit ViewModel.Main;
 
 interface
 uses
-  Model.Contact, Generics.Collections, ViewModel.Contact;
+  Model.Contact, Generics.Collections, ViewModel.Contact, MVVM.ViewModel;
 
 type
   TMainViewModel = class;
@@ -10,7 +10,7 @@ type
   TMainViewModel = class
   private
     FContacts : TContacts;
-    FOnEditContact: TOnEditContact;
+    FOnEditContact: TOnEditModelObject<TMainViewModel, TContactViewModel>;
     function GetContacts: TEnumerable<TContact>;
     function GetContactCount: Integer;
   public
@@ -21,7 +21,7 @@ type
     procedure EditContact(AContact : TContact);
     property Contacts : TEnumerable<TContact> read GetContacts;
     property ContactCount: Integer read GetContactCount;
-    property OnEditContact : TOnEditContact read FOnEditContact write FOnEditContact;
+    property OnEditContact : TOnEditModelObject<TMainViewModel, TContactViewModel> read FOnEditContact write FOnEditContact;
   end;
 
 
@@ -46,6 +46,7 @@ end;
 
 constructor TMainViewModel.Create;
 begin
+{ TODO : Change to not owning objects once ORM enters picture }
   FContacts := TContacts.Create(True);
 end;
 

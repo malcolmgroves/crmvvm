@@ -10,10 +10,10 @@ uses
   System.Rtti, System.Bindings.Outputs, Fmx.Bind.Editors, Data.Bind.EngExt,
   Fmx.Bind.DBEngExt, FMX.Layouts, FMX.StdCtrls, FMX.Controls.Presentation,
   FMX.MultiView, System.Actions, FMX.ActnList, EnumerableAdapter, Model.Contact,
-  FMX.Objects;
+  FMX.Objects, MVVM.View.FMX.Form;
 
 type
-  TMainView = class(TForm)
+  TMainView = class(TFormView<TMainViewModel>)
     ListView1: TListView;
     bindsrcContacts: TPrototypeBindSource;
     BindingsList1: TBindingsList;
@@ -45,20 +45,14 @@ type
     LinkPropertyToFieldText3: TLinkPropertyToField;
     SpeedButton4: TSpeedButton;
     actEdit: TAction;
-    procedure FormDestroy(Sender: TObject);
     procedure bindsrcContactsCreateAdapter(Sender: TObject;
       var ABindSourceAdapter: TBindSourceAdapter);
     procedure actAddExecute(Sender: TObject);
     procedure actEditExecute(Sender: TObject);
+    procedure FormCreate(Sender: TObject);
   private
-    FViewModel : TMainViewModel;
     procedure RefreshBindings;
     function ContactAdapter: TEnumerableBindSourceAdapter<TContact>;
-    function GetViewModel: TMainViewModel;
-    { Private declarations }
-  public
-    { Public declarations }
-    property ViewModel : TMainViewModel read GetViewModel;
   end;
 
 var
@@ -85,6 +79,24 @@ begin
   Result := TEnumerableBindSourceAdapter<TContact>(bindsrcContacts.InternalAdapter);
 end;
 
+procedure TMainView.FormCreate(Sender: TObject);
+begin
+  ViewModel.CreateDummyData;
+  RefreshBindings;
+  ViewModel.OnEditContact :=  procedure (ViewModel : TMainViewModel; ContactViewModel : TContactViewModel)
+                              var
+                                LContactView : TContactView;
+                              begin
+                                LContactView := TContactView.Create(nil, ContactViewModel);
+                                LContactView.ShowModal(procedure(ModalResult : TModalResult)
+                                                       begin
+                                                         ContactViewModel.Free;
+                                                         if ModalResult = mrOk then
+                                                           RefreshBindings;
+                                                       end);
+                              end;
+end;
+
 procedure TMainView.actAddExecute(Sender: TObject);
 begin
   ViewModel.Add;
@@ -102,31 +114,5 @@ begin
                                                                       ViewModel.Contacts);
 end;
 
-procedure TMainView.FormDestroy(Sender: TObject);
-begin
-  FViewModel.Free;
-end;
-
-function TMainView.GetViewModel: TMainViewModel;
-begin
-  if not Assigned(FViewModel) then
-  begin
-    FViewModel := TMainViewModel.Create;
-    FViewModel.CreateDummyData;
-    FViewModel.OnEditContact := procedure (ViewModel : TMainViewModel; ContactViewModel : TContactViewModel)
-                                var
-                                  LContactView : TContactView;
-                                begin
-                                  LContactView := TContactView.Create(nil, ContactViewModel);
-                                  LContactView.ShowModal(procedure(ModalResult : TModalResult)
-                                                         begin
-                                                           ContactViewModel.Free;
-                                                           if ModalResult = mrOk then
-                                                             RefreshBindings;
-                                                         end);
-                                end;
-  end;
-  Result := FViewModel;
-end;
 
 end.

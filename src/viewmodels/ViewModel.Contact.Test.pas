@@ -45,23 +45,21 @@ end;
 
 procedure TContactViewModelTest.TestCancel;
 begin
-  FViewModel.OnSaveContact := procedure (Sender : TContactViewModel; Contact : TContact)
+  FViewModel.OnSaveContact := procedure (ViewModel : TContactViewModel; Contact : TContact)
                               begin
                                 Assert.Fail;
                               end;
   FViewModel.Contact.Firstname := 'Barney';
   FViewModel.Contact.Lastname := 'Rubble';
   FViewModel.Cancel;
-//  Assert.AreEqual(cFirstname, Contact.Firstname);
-//  Assert.AreEqual(cLastname, Contact.Firstname);
 end;
 
 procedure TContactViewModelTest.TestSave;
 begin
-  FViewModel.OnSaveContact := procedure (Sender : TContactViewModel; Contact : TContact)
+  FViewModel.OnSaveContact := procedure (ViewModel : TContactViewModel; Contact : TContact)
                               begin
-                                Assert.AreEqual('Barney', Contact.Firstname);
-                                Assert.AreEqual('Rubble', Contact.Lastname);
+                                Assert.AreEqual('Barney', FViewModel.Contact.Firstname);
+                                Assert.AreEqual('Rubble', FViewModel.Contact.Lastname);
                               end;
   FViewModel.Contact.Firstname := 'Barney';
   FViewModel.Contact.Lastname := 'Rubble';

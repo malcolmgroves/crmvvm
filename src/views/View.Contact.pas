@@ -8,10 +8,10 @@ uses
   FMX.Objects, FMX.StdCtrls, FMX.Layouts, FMX.Controls.Presentation,
   Data.Bind.GenData, Data.Bind.Components, Data.Bind.ObjectScope,
   System.Actions, FMX.ActnList, FMX.Edit, System.Rtti, System.Bindings.Outputs,
-  Fmx.Bind.Editors, Data.Bind.EngExt, Fmx.Bind.DBEngExt;
+  Fmx.Bind.Editors, Data.Bind.EngExt, Fmx.Bind.DBEngExt, MVVM.View.FMX.Form;
 
 type
-  TContactView = class(TForm)
+  TContactView = class(TFormView<TContactViewModel>)
     ToolBar1: TToolBar;
     Layout1: TLayout;
     Rectangle1: TRectangle;
@@ -59,11 +59,6 @@ type
       var ABindSourceAdapter: TBindSourceAdapter);
     procedure actCancelExecute(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
-  private
-    FViewModel : TContactViewModel;
-  public
-    { Public declarations }
-    constructor Create(AOwner: TComponent; AViewModel : TContactViewModel); reintroduce;
   end;
 
 var
@@ -79,25 +74,19 @@ uses
 
 procedure TContactView.actCancelExecute(Sender: TObject);
 begin
-  FViewModel.Cancel;
+  ViewModel.Cancel;
 end;
 
 procedure TContactView.actSaveExecute(Sender: TObject);
 begin
-  FViewModel.Save;
+  ViewModel.Save;
 end;
 
 procedure TContactView.actSaveUpdate(Sender: TObject);
 begin
-  actSave.Enabled := FViewModel.CanSave;
+  actSave.Enabled := ViewModel.CanSave;
 end;
 
-constructor TContactView.Create(AOwner: TComponent;
-  AViewModel: TContactViewModel);
-begin
-  FViewModel := AViewModel;
-  inherited Create(AOwner);
-end;
 
 procedure TContactView.FormClose(Sender: TObject; var Action: TCloseAction);
 begin
@@ -108,7 +97,7 @@ procedure TContactView.bindsrcContactCreateAdapter(Sender: TObject;
   var ABindSourceAdapter: TBindSourceAdapter);
 begin
   ABindSourceAdapter := TObjectBindSourceAdapter<TContact>.Create(bindsrcContact,
-                                                               FViewModel.Contact,
+                                                               ViewModel.Contact,
                                                                False);
   ABindSourceAdapter.AutoPost := True;
 end;

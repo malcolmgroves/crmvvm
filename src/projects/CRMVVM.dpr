@@ -10,7 +10,10 @@ uses
   ViewModel.Main in '..\viewmodels\ViewModel.Main.pas',
   EnumerableAdapter in '..\EnumerableAdapter.pas',
   View.Contact in '..\views\View.Contact.pas' {ContactView},
-  ViewModel.Contact in '..\viewmodels\ViewModel.Contact.pas';
+  ViewModel.Contact in '..\viewmodels\ViewModel.Contact.pas',
+  MVVM.Model in '..\mvvm\MVVM.Model.pas',
+  MVVM.ViewModel in '..\mvvm\MVVM.ViewModel.pas',
+  MVVM.View.FMX.Form in '..\mvvm\MVVM.View.FMX.Form.pas';
 
 {$R *.res}
 
