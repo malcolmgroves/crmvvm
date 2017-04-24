@@ -12,6 +12,7 @@ uses
   DUnitX.Loggers.Xml.NUnit,
   DUnitX.TestFramework,
   Model.Contact.Test in '..\model\Model.Contact.Test.pas',
+  ViewModel.Contact.Test in '..\viewmodels\ViewModel.Contact.Test.pas',
   ViewModel.Main.Test in '..\viewmodels\ViewModel.Main.Test.pas';
 
 var

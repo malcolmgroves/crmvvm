@@ -14,6 +14,14 @@ type
     procedure Setup;
     [TearDown]
     procedure TearDown;
+    [Test]
+    [TestCase('AllFields', 'Fred,Flintstone,fred@flintstone.com,1234567,True')]
+    [TestCase('NoFirstname', ',Flintstone,fred@flintstone.com,1234567,False')]
+    [TestCase('NoPhone', 'Fred,Flintstone,fred@flintstone.com,,true')]
+    [TestCase('NoPhoneOrEmail', 'Fred,Flintstone,,,false')]
+    procedure TestIsValid(const Firstname, Lastname, Email, Phone : string; ExpectedResult : boolean);
+    [Test]
+    procedure TestAssign;
   end;
 
   [TestFixture]
@@ -41,7 +49,7 @@ type
 
 implementation
 uses
-  Model.Exceptions;
+  Model.Exceptions, SysUtils;
 
 procedure TContactTest.Setup;
 begin
@@ -53,6 +61,32 @@ begin
   FContact.Free;
 end;
 
+
+procedure TContactTest.TestAssign;
+var
+  LContact : TContact;
+begin
+  LContact := TContact.Create;
+  try
+    LContact.Firstname := 'Barney';
+    LContact.Lastname := 'Rubble';
+    FContact.Assign(LContact);
+    Assert.AreEqual(LContact.Firstname, FContact.Firstname);
+    Assert.AreEqual(LContact.Lastname, FContact.Lastname);
+  finally
+    LContact.Free;
+  end;
+end;
+
+procedure TContactTest.TestIsValid(const Firstname, Lastname, Email,
+  Phone: string; ExpectedResult: boolean);
+begin
+  FContact.Firstname := Firstname;
+  FContact.Lastname := Lastname;
+  FContact.Email := Email;
+  FContact.Phone := Phone;
+  Assert.AreEqual(ExpectedResult, FContact.IsValid);
+end;
 
 { TContactsTest }
 

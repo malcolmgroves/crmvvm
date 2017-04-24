@@ -1,6 +1,6 @@
 ﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
     <PropertyGroup>
-        <ProjectGuid>{EFCF392E-4032-4B62-85E0-8E1B84230036}</ProjectGuid>
+        <ProjectGuid>{8662B5E5-4209-4E82-BB13-B33F813B9A3C}</ProjectGuid>
     </PropertyGroup>
     <ItemGroup>
         <Projects Include="CRMVVM.dproj">

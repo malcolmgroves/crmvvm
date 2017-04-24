@@ -8,7 +8,9 @@ uses
   Common.Exceptions in '..\common\Common.Exceptions.pas',
   Model.Exceptions in '..\model\Model.Exceptions.pas',
   ViewModel.Main in '..\viewmodels\ViewModel.Main.pas',
-  EnumerableAdapter in '..\EnumerableAdapter.pas';
+  EnumerableAdapter in '..\EnumerableAdapter.pas',
+  View.Contact in '..\views\View.Contact.pas' {ContactView},
+  ViewModel.Contact in '..\viewmodels\ViewModel.Contact.pas';
 
 {$R *.res}
 

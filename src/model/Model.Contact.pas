@@ -2,7 +2,7 @@ unit Model.Contact;
 
 interface
 uses
-  Generics.Collections;
+  Generics.Collections, System.Classes;
 
 type
   TContact = class;
@@ -20,16 +20,23 @@ type
     property Count : Integer read GetCount;
   end;
 
-  TContact = class
+  TContact = class(TPersistent)
   private
     FID: integer;
     FFirstname: string;
     FLastname: string;
+    FEmail: string;
+    FPhone: string;
+    function GetIsValid: boolean;
   protected
   public
+    procedure Assign(Source: TPersistent); override;
     property ID: integer read FID write FID;
     property Firstname: string read FFirstname write FFirstname;
     property Lastname: string read FLastname write FLastname;
+    property Email: string read FEmail write FEmail;
+    property Phone: string read FPhone write FPhone;
+    property IsValid: boolean read GetIsValid;
   end;
 
 
@@ -88,5 +95,23 @@ end;
 
 { TContact }
 
+procedure TContact.Assign(Source: TPersistent);
+begin
+  if Source is TContact then
+  begin
+    ID := TContact(Source).ID;
+    Firstname := TContact(Source).Firstname;
+    Lastname := TContact(Source).Lastname;
+    Email := TContact(Source).Email;
+    Phone := TContact(Source).Phone;
+  end
+  else
+    inherited Assign(Source);
+end;
+
+function TContact.GetIsValid: boolean;
+begin
+  Result := (Length(Firstname) > 0) and ((Length(Email) > 0) or (Length(Phone) > 0));
+end;
 
 end.

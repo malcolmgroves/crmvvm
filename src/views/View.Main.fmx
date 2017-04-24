@@ -14,9 +14,33 @@ object MainView: TMainView
     Size.Height = 40.000000000000000000
     Size.PlatformDefault = False
     TabOrder = 2
+    object SpeedButton3: TSpeedButton
+      Action = actAdd
+      Align = Right
+      Enabled = True
+      ImageIndex = -1
+      Position.X = 528.000000000000000000
+      Size.Width = 56.000000000000000000
+      Size.Height = 40.000000000000000000
+      Size.PlatformDefault = False
+      StyleLookup = 'addtoolbutton'
+    end
+    object SpeedButton4: TSpeedButton
+      Action = actEdit
+      Align = Right
+      Enabled = True
+      ImageIndex = -1
+      Position.X = 584.000000000000000000
+      Size.Width = 56.000000000000000000
+      Size.Height = 40.000000000000000000
+      Size.PlatformDefault = False
+      StyleLookup = 'composetoolbutton'
+    end
   end
   object layoutMain: TLayout
     Align = Client
+    Padding.Right = 8.000000000000000000
+    Padding.Bottom = 8.000000000000000000
     Size.Width = 640.000000000000000000
     Size.Height = 440.000000000000000000
     Size.PlatformDefault = False
@@ -29,9 +53,172 @@ object MainView: TMainView
       ItemIndex = 0
       Align = Left
       Size.Width = 241.000000000000000000
-      Size.Height = 440.000000000000000000
+      Size.Height = 432.000000000000000000
       Size.PlatformDefault = False
       TabOrder = 0
+      StyleLookup = 'listviewstyle'
+      OnDblClick = actEditExecute
+    end
+    object Splitter1: TSplitter
+      Align = Left
+      Cursor = crHSplit
+      MinSize = 20.000000000000000000
+      Position.X = 241.000000000000000000
+      Size.Width = 8.000000000000000000
+      Size.Height = 432.000000000000000000
+      Size.PlatformDefault = False
+    end
+    object Layout1: TLayout
+      Align = Client
+      Padding.Top = 1.000000000000000000
+      Size.Width = 383.000000000000000000
+      Size.Height = 432.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 2
+      object Rectangle1: TRectangle
+        Align = Client
+        Fill.Color = claWhite
+        Padding.Left = 8.000000000000000000
+        Padding.Top = 8.000000000000000000
+        Padding.Right = 8.000000000000000000
+        Padding.Bottom = 8.000000000000000000
+        Sides = []
+        Size.Width = 383.000000000000000000
+        Size.Height = 431.000000000000000000
+        Size.PlatformDefault = False
+        object Layout2: TLayout
+          Align = Top
+          Position.X = 8.000000000000000000
+          Position.Y = 65.000000000000000000
+          Size.Width = 367.000000000000000000
+          Size.Height = 50.000000000000000000
+          Size.PlatformDefault = False
+          TabOrder = 0
+          object Layout6: TLayout
+            Align = Top
+            Size.Width = 367.000000000000000000
+            Size.Height = 50.000000000000000000
+            Size.PlatformDefault = False
+            TabOrder = 0
+            object Layout7: TLayout
+              Align = Left
+              Size.Width = 89.000000000000000000
+              Size.Height = 50.000000000000000000
+              Size.PlatformDefault = False
+              TabOrder = 0
+              object Label5: TLabel
+                Align = Client
+                Size.Width = 89.000000000000000000
+                Size.Height = 50.000000000000000000
+                Size.PlatformDefault = False
+                Text = 'Email:'
+                TabOrder = 0
+              end
+            end
+            object Layout8: TLayout
+              Align = Client
+              Size.Width = 278.000000000000000000
+              Size.Height = 50.000000000000000000
+              Size.PlatformDefault = False
+              TabOrder = 1
+              object Label6: TLabel
+                Align = Client
+                Size.Width = 278.000000000000000000
+                Size.Height = 50.000000000000000000
+                Size.PlatformDefault = False
+                Text = 
+                  'ipsum mi vehicula purus, eu congue sapien orci eu est. Morbi bla' +
+                  'ndit volutpat ante, non ultrices eros semper at. Fusce leo leo, ' +
+                  'mollis id viverra a, pulvinar non diam. Praesent ornare mauris a' +
+                  'c magna placerat rutrum.Curabitur volutpat urna fermentum sem ia' +
+                  'culis ultrices. Maecenas adipiscing sapien risus, nec consectetu' +
+                  'r arcu. Sed in arcu iaculis felis placerat elementum vitae porta' +
+                  ' libero. Donec quis purus nisi, ac ultrices lorem. Proin vitae d' +
+                  'iam id turpis rhoncus vestibulum scelerisque vel leo. Nulla quis' +
+                  ' scelerisque sem. Etiam imperdiet lacinia nulla sit amet varius.' +
+                  ' Aliquam in interdum mauris. Praesent placerat, libero vel biben' +
+                  'dum malesuada, velit libero vestibulum erat, vel porttitor diam ' +
+                  'urna et nibh. Nullam fringilla cursus tempor. Cras eleifend male' +
+                  'suada lacus quis consectetur. Cum sociis natoque penatibus et ma' +
+                  'gnis dis parturient montes, nascetur ridiculus mus. Sed vestibul' +
+                  'um bibendum sodales.Mauris consectetur ipsum ac turpis aliquam i' +
+                  'd placerat justo ornare. Donec nisl arcu, faucibus vel dictum vi' +
+                  'tae, dapibus vel mauris. Sed lacinia, elit ut commodo tempor, ma' +
+                  'uris felis consequat nisl, sit amet laoreet est quam et tortor. ' +
+                  'Proin mattis interdum tempus. Etiam ac vehicula neque. Donec tem' +
+                  'por, velit sit'
+                TabOrder = 0
+              end
+            end
+          end
+        end
+        object Line1: TLine
+          Align = Top
+          LineType = Top
+          Position.X = 8.000000000000000000
+          Position.Y = 58.000000000000000000
+          Size.Width = 367.000000000000000000
+          Size.Height = 7.000000000000000000
+          Size.PlatformDefault = False
+        end
+        object Layout3: TLayout
+          Align = Top
+          Position.X = 8.000000000000000000
+          Position.Y = 8.000000000000000000
+          Size.Width = 367.000000000000000000
+          Size.Height = 50.000000000000000000
+          Size.PlatformDefault = False
+          TabOrder = 2
+          object Label3: TLabel
+            Align = Client
+            Size.Width = 367.000000000000000000
+            Size.Height = 50.000000000000000000
+            Size.PlatformDefault = False
+            StyleLookup = 'listboxheaderlabel'
+            Text = 'Darkgoldenrod Darkgoldenrod'
+            TabOrder = 0
+          end
+        end
+        object Layout5: TLayout
+          Align = Top
+          Position.X = 8.000000000000000000
+          Position.Y = 115.000000000000000000
+          Size.Width = 367.000000000000000000
+          Size.Height = 50.000000000000000000
+          Size.PlatformDefault = False
+          TabOrder = 3
+          object Layout9: TLayout
+            Align = Left
+            Size.Width = 89.000000000000000000
+            Size.Height = 50.000000000000000000
+            Size.PlatformDefault = False
+            TabOrder = 0
+            object Label2: TLabel
+              Align = Client
+              Size.Width = 89.000000000000000000
+              Size.Height = 50.000000000000000000
+              Size.PlatformDefault = False
+              Text = 'Phone:'
+              TabOrder = 0
+            end
+          end
+          object Layout10: TLayout
+            Align = Client
+            Size.Width = 278.000000000000000000
+            Size.Height = 50.000000000000000000
+            Size.PlatformDefault = False
+            TabOrder = 1
+            object Label4: TLabel
+              Align = Client
+              Size.Width = 278.000000000000000000
+              Size.Height = 50.000000000000000000
+              Size.PlatformDefault = False
+              Text = 'M 341.236,311.738 L 305.830,346.113 L 305.830,277.363 Z '
+              TabOrder = 0
+            end
+          end
+        end
+      end
     end
   end
   object bindsrcContacts: TPrototypeBindSource
@@ -53,25 +240,70 @@ object MainView: TMainView
         Name = 'Lastname'
         Generator = 'ColorsNames'
         ReadOnly = False
+      end
+      item
+        Name = 'Email'
+        Generator = 'LoremIpsum'
+        ReadOnly = False
+      end
+      item
+        Name = 'Phone'
+        Generator = 'PathData'
+        ReadOnly = False
       end>
     ScopeMappings = <>
     OnCreateAdapter = bindsrcContactsCreateAdapter
-    Left = 400
+    Left = 472
     Top = 224
   end
   object BindingsList1: TBindingsList
     Methods = <>
     OutputConverters = <>
-    Left = 308
-    Top = 133
+    Left = 188
+    Top = 141
     object LinkListControlToField1: TLinkListControlToField
       Category = 'Quick Bindings'
       DataSource = bindsrcContacts
       FieldName = 'Firstname'
       Control = ListView1
+      CustomFormat = 'Owner.Firstname.Value + " " + Owner.Lastname.Value'
       FillExpressions = <>
       FillHeaderExpressions = <>
       FillBreakGroups = <>
+    end
+    object LinkPropertyToFieldText: TLinkPropertyToField
+      Category = 'Quick Bindings'
+      DataSource = bindsrcContacts
+      FieldName = 'Firstname'
+      Component = Label3
+      CustomFormat = 'Owner.Firstname.Value + " " + Owner.Lastname.Value'
+      ComponentProperty = 'Text'
+    end
+    object LinkPropertyToFieldText2: TLinkPropertyToField
+      Category = 'Quick Bindings'
+      DataSource = bindsrcContacts
+      FieldName = 'Phone'
+      Component = Label4
+      ComponentProperty = 'Text'
+    end
+    object LinkPropertyToFieldText3: TLinkPropertyToField
+      Category = 'Quick Bindings'
+      DataSource = bindsrcContacts
+      FieldName = 'Email'
+      Component = Label6
+      ComponentProperty = 'Text'
+    end
+  end
+  object ActionList1: TActionList
+    Left = 392
+    Top = 296
+    object actAdd: TAction
+      Text = 'Add'
+      OnExecute = actAddExecute
+    end
+    object actEdit: TAction
+      Text = 'Edit'
+      OnExecute = actEditExecute
     end
   end
 end
