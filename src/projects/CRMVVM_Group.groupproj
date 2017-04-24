@@ -1,0 +1,48 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+        <ProjectGuid>{EFCF392E-4032-4B62-85E0-8E1B84230036}</ProjectGuid>
+    </PropertyGroup>
+    <ItemGroup>
+        <Projects Include="CRMVVM.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="CRMVVMTests.dproj">
+            <Dependencies/>
+        </Projects>
+    </ItemGroup>
+    <ProjectExtensions>
+        <Borland.Personality>Default.Personality.12</Borland.Personality>
+        <Borland.ProjectType/>
+        <BorlandProject>
+            <Default.Personality/>
+        </BorlandProject>
+    </ProjectExtensions>
+    <Target Name="CRMVVM">
+        <MSBuild Projects="CRMVVM.dproj"/>
+    </Target>
+    <Target Name="CRMVVM:Clean">
+        <MSBuild Projects="CRMVVM.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="CRMVVM:Make">
+        <MSBuild Projects="CRMVVM.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="CRMVVMTests">
+        <MSBuild Projects="CRMVVMTests.dproj"/>
+    </Target>
+    <Target Name="CRMVVMTests:Clean">
+        <MSBuild Projects="CRMVVMTests.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="CRMVVMTests:Make">
+        <MSBuild Projects="CRMVVMTests.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="Build">
+        <CallTarget Targets="CRMVVM;CRMVVMTests"/>
+    </Target>
+    <Target Name="Clean">
+        <CallTarget Targets="CRMVVM:Clean;CRMVVMTests:Clean"/>
+    </Target>
+    <Target Name="Make">
+        <CallTarget Targets="CRMVVM:Make;CRMVVMTests:Make"/>
+    </Target>
+    <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
+</Project>
