@@ -1,226 +1,226 @@
 ﻿[bindsrcContacts]
-Coordinates=180,10,95,177
+Coordinates=180,10,107,204
 
 [ListView1]
-Coordinates=20,10,89,141
+Coordinates=20,10,107,168
 
 [BindingsList1]
-Coordinates=118,1,82,33
+Coordinates=118,1,91,36
 
 [ActionList1]
-Coordinates=39,170,70,33
+Coordinates=39,170,78,36
 
 [layoutMain]
-Coordinates=240,1,68,33
+Coordinates=240,1,77,36
 Visible=False
 
 [actAdd]
-Coordinates=240,53,49,33
+Coordinates=240,53,54,36
 
 [ToolBar1]
-Coordinates=240,157,58,33
+Coordinates=240,157,67,36
 Visible=False
 
 [SpeedButton3]
-Coordinates=0,0,84,33
+Coordinates=0,0,96,36
 Visible=False
 
 [Line1]
-Coordinates=191,241,41,33
+Coordinates=191,241,46,36
 Visible=False
 
 [Layout2]
-Coordinates=73,241,53,33
+Coordinates=73,241,60,36
 Visible=False
 
 [Rectangle1]
-Coordinates=0,208,69,33
+Coordinates=0,208,80,36
 Visible=False
 
 [Layout1]
-Coordinates=346,204,53,33
+Coordinates=346,204,60,36
 Visible=False
 
 [Splitter1]
-Coordinates=346,256,55,33
+Coordinates=346,256,62,36
 Visible=False
 
 []
 Coordinates=118,1,53,58
 
 [Layout3]
-Coordinates=59,170,53,33
+Coordinates=59,170,60,36
 Visible=False
 
 [Label3]
-Coordinates=118,71,46,33
+Coordinates=118,71,53,36
 Visible=False
 
 [Layout8]
-Coordinates=132,241,53,33
+Coordinates=132,241,60,36
 Visible=False
 
 [Layout7]
-Coordinates=346,170,53,33
+Coordinates=346,170,60,36
 Visible=False
 
 [Label5]
-Coordinates=40,220,46,33
+Coordinates=40,220,53,36
 Visible=False
 
 [Layout6]
-Coordinates=346,308,53,33
+Coordinates=346,308,60,36
 Visible=False
 
 [Label6]
-Coordinates=350,90,46,51
+Coordinates=350,90,53,58
 
 [Layout5]
-Coordinates=287,312,53,33
+Coordinates=287,312,60,36
 Visible=False
 
 [Label4]
-Coordinates=350,10,46,51
+Coordinates=350,10,53,58
 
 [Layout9]
-Coordinates=34,312,53,33
+Coordinates=34,312,60,36
 Visible=False
 
 [Label2]
-Coordinates=240,53,46,33
+Coordinates=240,53,53,36
 Visible=False
 
 [Layout10]
-Coordinates=493,1,59,33
+Coordinates=493,1,67,36
 Visible=False
 
 [actEdit]
-Coordinates=221,282,48,33
+Coordinates=221,282,54,36
 
 [SpeedButton4]
-Coordinates=505,56,84,33
+Coordinates=505,56,96,36
 Visible=False
 
 [actDelete]
-Coordinates=136,148,60,33
+Coordinates=136,148,69,36
 
 [PopupMenu1]
-Coordinates=385,363,79,33
+Coordinates=385,363,90,36
 
 [MenuItem1]
-Coordinates=296,386,68,33
+Coordinates=296,386,79,36
 Visible=False
 
 [MultiView1]
-Coordinates=108,386,67,33
+Coordinates=108,386,77,36
 Visible=False
 
 [TabControl1]
-Coordinates=19,386,74,33
+Coordinates=19,386,85,36
 Visible=False
 
 [actCompanies]
-Coordinates=513,364,84,33
+Coordinates=513,364,97,36
 
 [actContacts]
-Coordinates=513,419,73,33
+Coordinates=513,419,82,36
 
 [SpeedButton5]
-Coordinates=505,287,84,33
+Coordinates=505,287,96,36
 Visible=False
 
 [tabContacts]
-Coordinates=513,474,73,33
+Coordinates=513,474,83,36
 Visible=False
 
 [tabCompanies]
-Coordinates=513,529,85,33
+Coordinates=513,529,97,36
 Visible=False
 
 [SpeedButton1]
-Coordinates=505,133,84,33
+Coordinates=505,133,96,36
 Visible=False
 
 [ImageList1]
-Coordinates=513,584,68,33
+Coordinates=513,584,77,36
 
 [Layout4]
-Coordinates=0,246,53,33
+Coordinates=0,246,60,36
 Visible=False
 
 [SpeedButton2]
-Coordinates=505,210,84,33
+Coordinates=505,210,96,36
 Visible=False
 
 [bindsrcCompanies]
-Coordinates=530,10,107,105
+Coordinates=530,10,121,116
 
 [ListView2]
-Coordinates=740,10,89,141
+Coordinates=740,10,107,168
 
 [Splitter2]
-Coordinates=444,592,55,33
+Coordinates=444,592,62,36
 Visible=False
 
 [Layout15]
-Coordinates=238,123,59,33
+Coordinates=238,123,67,36
 Visible=False
 
 [Layout13]
-Coordinates=635,89,59,33
+Coordinates=635,89,67,36
 Visible=False
 
 [Layout14]
-Coordinates=635,141,59,33
+Coordinates=635,141,67,36
 Visible=False
 
 [CompanyView.bindsrcCompany]
 Coordinates=784,312,171,87
 
 [Layout11]
-Coordinates=635,193,59,33
+Coordinates=635,193,67,36
 Visible=False
 
 [ContactView.bindsrcContact]
 Coordinates=784,170,154,141
 
 [Line2]
-Coordinates=635,245,41,33
+Coordinates=635,245,46,36
 Visible=False
 
 [Layout12]
-Coordinates=635,297,59,33
+Coordinates=635,297,67,36
 Visible=False
 
 [Label8]
-Coordinates=430,100,46,51
+Coordinates=430,100,53,58
 
 [Label1]
-Coordinates=464,472,46,33
+Coordinates=464,472,53,36
 Visible=False
 
 [Label7]
-Coordinates=430,10,46,51
+Coordinates=430,10,53,58
 
 [ContactView.bindsrcCompanies]
 Coordinates=784,330,171,87
 
 [Layout16]
-Coordinates=439,170,59,33
+Coordinates=439,170,67,36
 Visible=False
 
 [Label9]
-Coordinates=238,209,46,33
+Coordinates=238,209,53,36
 Visible=False
 
 [Layout18]
-Coordinates=439,222,59,33
+Coordinates=439,222,67,36
 Visible=False
 
 [Layout17]
-Coordinates=439,274,59,33
+Coordinates=439,274,67,36
 Visible=False
 
 [Label10]
-Coordinates=350,170,52,51
+Coordinates=350,170,60,58
 

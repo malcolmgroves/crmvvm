@@ -89,16 +89,16 @@ var
   LCompanyViewModel : TCompanyViewModel;
 begin
   LCompanyViewModel := TCompanyViewModel.Create(Company);
-  LCompanyViewModel.DoSaveCompany := procedure(ViewModel : TCompanyViewModel; Company : TCompany)
-                                     begin
-                                       FCompanies.AddCompany(Company);
-                                       ObjectStore.Manager.Save(Company);
-                                       DoOnCompaniesUpdated;
-                                     end;
-  LCompanyViewModel.DoCancelCompany := procedure(ViewModel : TCompanyViewModel; Company : TCompany)
-                                       begin
-                                         Company.Free;
-                                       end;
+  LCompanyViewModel.DoSaveModelObject := procedure(ViewModel : TCompanyViewModel; Company : TCompany)
+                                         begin
+                                           FCompanies.AddCompany(Company);
+                                           ObjectStore.Manager.Save(Company);
+                                           DoOnCompaniesUpdated;
+                                         end;
+  LCompanyViewModel.DoCancelModelObject := procedure(ViewModel : TCompanyViewModel; Company : TCompany)
+                                           begin
+                                             Company.Free;
+                                           end;
   DoOnEditCompany(LCompanyViewModel);
 end;
 
@@ -107,40 +107,27 @@ var
   LContactViewModel : TContactViewModel;
 begin
   LContactViewModel := TContactViewModel.Create(Contact);
-  LContactViewModel.DoSaveContact := procedure(ViewModel : TContactViewModel; Contact : TContact)
-                                     begin
-                                       FContacts.AddContact(Contact);
-                                       ObjectStore.Manager.Save(Contact);
-                                       DoOnContactsUpdated;
-                                     end;
-  LContactViewModel.DoCancelContact := procedure(ViewModel : TContactViewModel; Contact : TContact)
-                                       begin
-                                         Contact.Free;
-                                       end;
+  LContactViewModel.DoSaveModelObject := procedure(ViewModel : TContactViewModel; Contact : TContact)
+                                         begin
+                                           FContacts.AddContact(Contact);
+                                           ObjectStore.Manager.Save(Contact);
+                                           DoOnContactsUpdated;
+                                         end;
+  LContactViewModel.DoCancelModelObject := procedure(ViewModel : TContactViewModel; Contact : TContact)
+                                           begin
+                                             Contact.Free;
+                                           end;
   DoOnEditContact(LContactViewModel);
 end;
 
 constructor TMainViewModel.Create;
-var
-  LContacts : TList<TContact>;
-  LCompanies : TList<TCompany>;
 begin
   FContacts := TContacts.Create(False);
-  LContacts := ObjectStore.Manager.Find<TContact>.List;
-  try
-    FContacts.LoadFromList(LContacts);
-  finally
-    LContacts.Free;
-  end;
+  FContacts.LoadFromList(ObjectStore.Manager.Find<TContact>.List);
   DoOnContactsUpdated;
 
   FCompanies := TCompanies.Create(False);
-  LCompanies := ObjectStore.Manager.Find<TCompany>.List;
-  try
-    FCompanies.LoadFromList(LCompanies);
-  finally
-    LCompanies.Free;
-  end;
+  FCompanies.LoadFromList(ObjectStore.Manager.Find<TCompany>.List);
   DoOnCompaniesUpdated;
 end;
 
@@ -229,19 +216,19 @@ begin
     TActiveView.Contacts: begin
                             LContact := CurrentContact;
                             LContactViewModel := TContactViewModel.Create(LContact);
-                            LContactViewModel.DoSaveContact := procedure(ViewModel : TContactViewModel; Contact : TContact)
-                                                               begin
-                                                                 ObjectStore.Manager.Flush(Contact);
-                                                               end;
+                            LContactViewModel.DoSaveModelObject := procedure(ViewModel : TContactViewModel; Contact : TContact)
+                                                                   begin
+                                                                     ObjectStore.Manager.Flush(Contact);
+                                                                   end;
                             DoOnEditContact(LContactViewModel);
                           end;
     TActiveView.Companies:  begin
                               LCompany := CurrentCompany;
                               LCompanyViewModel := TCompanyViewModel.Create(LCompany);
-                              LCompanyViewModel.DoSaveCompany := procedure(ViewModel : TCompanyViewModel; Company : TCompany)
-                                                                 begin
-                                                                   ObjectStore.Manager.Flush(Company);
-                                                                 end;
+                              LCompanyViewModel.DoSaveModelObject := procedure(ViewModel : TCompanyViewModel; Company : TCompany)
+                                                                     begin
+                                                                       ObjectStore.Manager.Flush(Company);
+                                                                     end;
                               DoOnEditCompany(LCompanyViewModel);
                             end;
   end;

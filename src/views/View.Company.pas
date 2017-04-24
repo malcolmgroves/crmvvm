@@ -80,7 +80,7 @@ procedure TCompanyView.bindsrcCompanyCreateAdapter(Sender: TObject;
   var ABindSourceAdapter: TBindSourceAdapter);
 begin
   ABindSourceAdapter := TObjectBindSourceAdapter<TCompany>.Create(bindsrcCompany,
-                                                               ViewModel.Company,
+                                                               ViewModel.ModelObject,
                                                                False);
   ABindSourceAdapter.AutoPost := True;
 end;

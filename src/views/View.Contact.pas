@@ -114,19 +114,19 @@ begin
   if AssignValueRec.OutObj = nil then
   begin
     // selecting the correct Company in the lookup based on the Company in TContact
-    if Assigned(ViewModel.Contact.Company) then
+    if Assigned(ViewModel.ModelObject.Company) then
     begin
-      Value := TValue.From<Integer>(ViewModel.Contact.Company.ID);
+      Value := TValue.From<Integer>(ViewModel.ModelObject.Company.ID);
       // assigning the value doesn't update the selection in the combobox
-      ComboBox1.ItemIndex := ComboBox1.Items.IndexOf(ViewModel.Contact.Company.Name);
+      ComboBox1.ItemIndex := ComboBox1.Items.IndexOf(ViewModel.ModelObject.Company.Name);
     end;
     Handled := True;
   end
   else
   begin
     // assigning the selected Company back to the TContact
-    if (not Assigned(ViewModel.Contact.Company)) or (ViewModel.Contact.Company.ID <> Value.AsInteger) then
-      ViewModel.Contact.Company := ViewModel.GetCompanyByID(Value.AsInteger);
+    if (not Assigned(ViewModel.ModelObject.Company)) or (ViewModel.ModelObject.Company.ID <> Value.AsInteger) then
+      ViewModel.ModelObject.Company := ViewModel.GetCompanyByID(Value.AsInteger);
     Handled := True;
   end;
 end;
@@ -142,7 +142,7 @@ procedure TContactView.bindsrcContactCreateAdapter(Sender: TObject;
   var ABindSourceAdapter: TBindSourceAdapter);
 begin
   ABindSourceAdapter := TObjectBindSourceAdapter<TContact>.Create(bindsrcContact,
-                                                               ViewModel.Contact,
+                                                               ViewModel.ModelObject,
                                                                False);
   ABindSourceAdapter.AutoPost := True;
 end;

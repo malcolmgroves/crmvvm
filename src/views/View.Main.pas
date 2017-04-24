@@ -189,9 +189,11 @@ procedure TMainView.LinkPropertyToFieldText6AssigningValue(Sender: TObject;
   var Handled: Boolean);
 var
   LName : string;
+  LCurrentContact : TContact;
 begin
   LName := '';
-  if Assigned(ContactAdapter.Current.Company) then
+  LCurrentContact := ContactAdapter.Current;
+  if (Assigned(LCurrentContact) and Assigned(LCurrentContact.Company)) then
     LName := ContactAdapter.Current.Company.Name;
   Label10.Text := Lname;
   Handled := True;

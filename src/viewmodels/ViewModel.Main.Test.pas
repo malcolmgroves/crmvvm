@@ -168,7 +168,7 @@ begin
                                     end;
   FViewModel.DoEditContact := procedure(ContactViewModel : TContactViewModel)
                               begin
-                                ContactViewModel.Contact.Firstname := 'Barney';
+                                ContactViewModel.ModelObject.Firstname := 'Barney';
                                 ContactViewModel.Save;
                               end;
   FviewModel.Edit;
@@ -189,7 +189,7 @@ begin
                                     end;
   FViewModel.DoEditContact := procedure(ContactViewModel : TContactViewModel)
                               begin
-                                ContactViewModel.Contact.Firstname := 'Barney';
+                                ContactViewModel.ModelObject.Firstname := 'Barney';
                                 ContactViewModel.Cancel;
                               end;
   FViewModel.Edit;

@@ -73,6 +73,7 @@ var
   LContact : TContact;
   LCompany : TCompany;
 begin
+  LCompany := nil;
   LContact := TContact.Create;
   try
     LCompany := TCompany.Create;
