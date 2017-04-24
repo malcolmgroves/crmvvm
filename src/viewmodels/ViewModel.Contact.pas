@@ -5,12 +5,13 @@ uses
   Model.Contact, Generics.Collections, MVVM.ViewModel;
 
 type
+  TViewModelState = (Viewing, Editing);
   TContactViewModel = class
   private
     FOriginalContact : TContact;
     FContact : TContact;
-    FOnSaveContact: TOnModelObjectNotify<TContactViewModel, TContact>;
-    FOnCancelContact: TOnModelObjectNotify<TContactViewModel, TContact>;
+    FDoSaveContact: TModelObjectCommand<TContactViewModel, TContact>;
+    FDoCancelContact: TModelObjectCommand<TContactViewModel, TContact>;
     function GetCanSave: Boolean;
   public
     constructor Create(AContact : TContact); virtual;
@@ -19,8 +20,8 @@ type
     procedure Cancel;
     property Contact : TContact read FContact;
     property CanSave : Boolean read GetCanSave;
-    property OnSaveContact : TOnModelObjectNotify<TContactViewModel, TContact> read FOnSaveContact write FOnSaveContact;
-    property OnCancelContact : TOnModelObjectNotify<TContactViewModel, TContact> read FOnCancelContact write FOnCancelContact;
+    property DoSaveContact : TModelObjectCommand<TContactViewModel, TContact> read FDoSaveContact write FDoSaveContact;
+    property DoCancelContact : TModelObjectCommand<TContactViewModel, TContact> read FDoCancelContact write FDoCancelContact;
   end;
 
 implementation
@@ -30,8 +31,8 @@ implementation
 procedure TContactViewModel.Cancel;
 begin
   // don't assign the staging back to FOriginalContact
-  if Assigned(FOnCancelContact) then
-    FOnCancelContact(self, FOriginalContact);
+  if Assigned(FDoCancelContact) then
+    FDoCancelContact(self, FOriginalContact);
 end;
 
 constructor TContactViewModel.Create(AContact: TContact);
@@ -55,8 +56,8 @@ end;
 procedure TContactViewModel.Save;
 begin
   FOriginalContact.Assign(FContact);
-  if Assigned(FOnSaveContact) then
-    FOnSaveContact(self, FOriginalContact);
+  if Assigned(FDoSaveContact) then
+    FDoSaveContact(self, FOriginalContact);
 end;
 
 end.

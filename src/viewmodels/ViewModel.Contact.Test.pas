@@ -45,7 +45,7 @@ end;
 
 procedure TContactViewModelTest.TestCancel;
 begin
-  FViewModel.OnSaveContact := procedure (ViewModel : TContactViewModel; Contact : TContact)
+  FViewModel.DoSaveContact := procedure (ViewModel : TContactViewModel; Contact : TContact)
                               begin
                                 Assert.Fail;
                               end;
@@ -56,7 +56,7 @@ end;
 
 procedure TContactViewModelTest.TestSave;
 begin
-  FViewModel.OnSaveContact := procedure (ViewModel : TContactViewModel; Contact : TContact)
+  FViewModel.DoSaveContact := procedure (ViewModel : TContactViewModel; Contact : TContact)
                               begin
                                 Assert.AreEqual('Barney', FViewModel.Contact.Firstname);
                                 Assert.AreEqual('Rubble', FViewModel.Contact.Lastname);
@@ -65,6 +65,7 @@ begin
   FViewModel.Contact.Lastname := 'Rubble';
   FViewModel.Save;
 end;
+
 
 initialization
   TDUnitX.RegisterTestFixture(TContactViewModelTest);

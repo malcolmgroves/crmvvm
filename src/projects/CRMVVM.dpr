@@ -14,7 +14,8 @@ uses
   MVVM.Model in '..\mvvm\MVVM.Model.pas',
   MVVM.ViewModel in '..\mvvm\MVVM.ViewModel.pas',
   MVVM.View.FMX.Form in '..\mvvm\MVVM.View.FMX.Form.pas',
-  Common.ObjectStore in '..\common\Common.ObjectStore.pas' {ObjectStore: TDataModule};
+  Common.ObjectStore in '..\common\Common.ObjectStore.pas' {ObjectStore: TDataModule},
+  Common.Messages in '..\common\Common.Messages.pas';
 
 {$R *.res}
 

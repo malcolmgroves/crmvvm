@@ -65,7 +65,7 @@ implementation
 
 {$R *.fmx}
 
-uses View.Contact, ViewModel.Contact;
+uses View.Contact, ViewModel.Contact, Common.Messages, System.Messaging;
 
 { TviewMain }
 
@@ -76,7 +76,7 @@ end;
 
 procedure TMainView.FormCreate(Sender: TObject);
 begin
-  ViewModel.OnEditContact :=  procedure (ViewModel : TMainViewModel; ContactViewModel : TContactViewModel)
+  ViewModel.DoEditContact :=  procedure (ContactViewModel : TContactViewModel)
                               var
                                 LContactView : TContactView;
                               begin
@@ -87,15 +87,16 @@ begin
                                                          bindsrcContacts.Refresh;
                                                        end);
                               end;
-  ViewModel.OnConfirmDeleteContact := function (ViewModel : TMainViewModel; Contact : TContact) : boolean
+  ViewModel.ConfirmDeleteContact := function (ViewModel : TMainViewModel; Contact : TContact) : boolean
                                       begin
                                         Result := MessageDlg(Format('Are you sure you want to delete %s %s?', [COntact.Firstname, COntact.Lastname]),
                                                              TMsgDlgType.mtConfirmation, mbOKCancel, 0) = mrOK;
                                       end;
-  ViewModel.OnContactsUpdated :=  procedure (ViewModel : TMainViewModel)
-                                  begin
-                                    ContactAdapter.Reload;
-                                  end;
+
+  MessageManager.SubscribeToMessage(TOnContactsUpdated, procedure(const Sender : TObject; const M : TMessageBase)
+                                                        begin
+                                                          ContactAdapter.Reload;
+                                                        end);
 end;
 
 procedure TMainView.actAddExecute(Sender: TObject);

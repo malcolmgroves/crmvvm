@@ -8,9 +8,8 @@ type
   TMainViewModel = class
   private
     FContacts : TContacts;
-    FOnEditContact: TOnChildViewModelNotify<TMainViewModel, TContactViewModel>;
-    FOnContactsUpdated: TOnViewModelNotify<TMainViewModel>;
-    FOnConfirmDeleteContact: TOnModelObjectFunc<TMainViewModel, TContact, boolean>;
+    FDoEditContact: TViewModelCommand<TContactViewModel>;
+    FConfirmDeleteContact: TModelObjectConfirm<TMainViewModel, TContact, boolean>;
     function GetContacts: TEnumerable<TContact>;
     function GetContactCount: Integer;
     procedure DoOnContactsUpdated;
@@ -25,9 +24,8 @@ type
     procedure DeleteContact(AContact : TContact);
     property Contacts : TEnumerable<TContact> read GetContacts;
     property ContactCount: Integer read GetContactCount;
-    property OnEditContact : TOnChildViewModelNotify<TMainViewModel, TContactViewModel> read FOnEditContact write FOnEditContact;
-    property OnConfirmDeleteContact : TOnModelObjectFunc<TMainViewModel, TContact, boolean> read FOnConfirmDeleteContact write FOnConfirmDeleteContact;
-    property OnContactsUpdated : TOnViewModelNotify<TMainViewModel> read FOnContactsUpdated write FOnContactsUpdated;
+    property DoEditContact : TViewModelCommand<TContactViewModel> read FDoEditContact write FDoEditContact;
+    property ConfirmDeleteContact : TModelObjectConfirm<TMainViewModel, TContact, boolean> read FConfirmDeleteContact write FConfirmDeleteContact;
   end;
 
 
@@ -35,11 +33,9 @@ implementation
 
 { TMainViewModel }
 
-uses Common.ObjectStore;
+uses Common.ObjectStore, Common.Messages, System.Messaging;
 
 function TMainViewModel.NewContact : TContact;
-var
-  LContactViewModel : TContactViewModel;
 begin
   Result := TContact.Create;
   AddContact(Result);
@@ -50,13 +46,13 @@ var
   LContactViewModel : TContactViewModel;
 begin
   LContactViewModel := TContactViewModel.Create(Contact);
-  LContactViewModel.OnSaveContact := procedure(ViewModel : TContactViewModel; Contact : TContact)
+  LContactViewModel.DoSaveContact := procedure(ViewModel : TContactViewModel; Contact : TContact)
                                      begin
                                        FContacts.AddContact(Contact);
                                        ObjectStore.Manager.Save(Contact);
                                        DoOnContactsUpdated;
                                      end;
-  LContactViewModel.OnCancelContact := procedure(ViewModel : TContactViewModel; Contact : TContact)
+  LContactViewModel.DoCancelContact := procedure(ViewModel : TContactViewModel; Contact : TContact)
                                        begin
                                          Contact.Free;
                                        end;
@@ -79,8 +75,8 @@ end;
 
 procedure TMainViewModel.DeleteContact(AContact: TContact);
 begin
-  if Assigned(FOnConfirmDeleteContact) then
-    if FOnConfirmDeleteContact(self, AContact) then
+  if Assigned(FConfirmDeleteContact) then
+    if FConfirmDeleteContact(self, AContact) then
     begin
       FContacts.DeleteContact(AContact);
       ObjectStore.Manager.Remove(AContact);
@@ -96,14 +92,13 @@ end;
 
 procedure TMainViewModel.DoOnContactsUpdated;
 begin
-  if Assigned(FOnContactsUpdated) then
-    FOnContactsUpdated(self);
+  MessageManager.SendMessage(self, TOnContactsUpdated.Create(self, False));
 end;
 
 procedure TMainViewModel.DoOnEditContact(ContactViewModel: TContactViewModel);
 begin
-  if Assigned(FOnEditContact) then
-    FOnEditContact(self, ContactViewModel);
+  if Assigned(FDoEditContact) then
+    FDoEditContact(ContactViewModel);
 end;
 
 procedure TMainViewModel.EditContact(AContact: TContact);
@@ -111,9 +106,9 @@ var
   LContactViewModel : TContactViewModel;
 begin
   LContactViewModel := TContactViewModel.Create(AContact);
-  LContactViewModel.OnSaveContact := procedure(ViewModel : TContactViewModel; Contact : TContact)
+  LContactViewModel.DoSaveContact := procedure(ViewModel : TContactViewModel; Contact : TContact)
                                      begin
-                                       ObjectStore.Manager.Update(Contact);
+                                       ObjectStore.Manager.Flush(Contact);
                                      end;
   DoOnEditContact(LContactViewModel);
 end;
