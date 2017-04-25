@@ -9,6 +9,7 @@ type
     ModelException = class(CRMVVMException);
     ViewModelException = class(CRMVVMException);
       ViewModelMissingDelegateException = class(ViewModelException);
+      ViewModelMissingHostException = class(ViewModelException);
     ViewException = class(CRMVVMException);
 
 implementation

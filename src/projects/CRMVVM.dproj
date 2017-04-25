@@ -340,6 +340,8 @@
             <Form>CompanyView</Form>
             <FormType>fmx</FormType>
         </DCCReference>
+        <DCCReference Include="..\viewmodels\ViewModel.Sub.Contacts.pas"/>
+        <DCCReference Include="..\viewmodels\ViewModel.Sub.Companies.pas"/>
         <BuildConfiguration Include="Release">
             <Key>Cfg_2</Key>
             <CfgParent>Base</CfgParent>

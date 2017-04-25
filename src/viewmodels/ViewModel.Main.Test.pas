@@ -39,7 +39,7 @@ type
 //    [TestCase('CompanyToContact', 'Company,Contact,Contact')]
 //    [TestCase('ContactToCompany', 'Contact,Company,Company')]
 //    [TestCase('ContactToContact', 'Contact,Contact,Contact')]
-//    procedure TestChangeView(InitialView, NewView, ExpectedResult : TActiveView);
+//    procedure TestChangeView(InitialView, NewView, ExpectedResult : TActiveViewModel);
 
   end;
 
@@ -51,10 +51,10 @@ procedure TMainViewModelTest.Setup;
 begin
   CreateObjectStore(True);
   FViewModel := TMainViewModel.Create;
-  FViewModel.DoEditContact := procedure(ContactViewModel : TContactViewModel)
-                              begin
-                                ContactViewModel.Save;
-                              end;
+  FViewModel.ContactsViewModel.DoEditContact := procedure(ContactViewModel : TContactViewModel)
+                                                begin
+                                                  ContactViewModel.Save;
+                                                end;
 end;
 
 procedure TMainViewModelTest.TearDown;
@@ -65,7 +65,7 @@ end;
 
 //procedure TMainViewModelTest.TestActiveViewDeleteDelegationForCompany;
 //begin
-//  FViewModel.ActiveView := TActiveView.Companies;
+//  FViewModel.ActiveViewModel := TActiveViewModel.Companies;
 //  FViewModel.ConfirmDeleteContact := function(ViewModel : TMainViewModel; Contact : TContact): boolean
 //                                     begin
 //                                       Result := False;
@@ -81,7 +81,7 @@ end;
 //
 //procedure TMainViewModelTest.TestActiveViewDeleteDelegationForContact;
 //begin
-//  FViewModel.ActiveView := TActiveView.Contacts;
+//  FViewModel.ActiveViewModel := TActiveViewModel.Contacts;
 //  FViewModel.ConfirmDeleteContact := function(ViewModel : TMainViewModel; Contact : TContact): boolean
 //                                     begin
 //                                       Result := False;
@@ -99,17 +99,17 @@ procedure TMainViewModelTest.TestAdd;
 var
   LCount : Integer;
 begin
-  LCount := FViewModel.ContactCount;
-  FViewModel.NewContact;
-  Assert.AreEqual(LCount + 1, FViewModel.ContactCount);
+  LCount := FViewModel.ContactsViewModel.ContactCount;
+  FViewModel.ContactsViewModel.NewContact;
+  Assert.AreEqual(LCount + 1, FViewModel.ContactsViewModel.ContactCount);
 end;
 
 //procedure TMainViewModelTest.TestChangeView(InitialView, NewView,
-//  ExpectedResult: TActiveView);
+//  ExpectedResult: TActiveViewModel);
 //begin
-//  FViewModel.ActiveView := InitialView;
-//  FViewModel.ActiveView := NewView;
-//  Assert.AreEqual<TActiveView>(ExpectedResult, FViewModel.ActiveView);
+//  FViewModel.ActiveViewModel := InitialView;
+//  FViewModel.ActiveViewModel := NewView;
+//  Assert.AreEqual<TActiveViewModel>(ExpectedResult, FViewModel.ActiveViewModel);
 //end;
 
 procedure TMainViewModelTest.TestDeleteConfirmed;
@@ -117,21 +117,21 @@ var
   LContact : TContact;
   LCount : Integer;
 begin
-  FViewModel.ActiveView := TActiveView.Contacts;
-  LContact := FviewModel.NewContact;
-  LCount := FViewModel.ContactCount;
+  FViewModel.ActiveViewModel := TActiveViewModel.Contacts;
+  LContact := FviewModel.ContactsViewModel.NewContact;
+  LCount := FViewModel.ContactsViewModel.ContactCount;
 
-  FViewModel.QueryCurrentContact := function (ViewModel : TMainViewModel) : TContact
-                                    begin
-                                      Result := LContact;
-                                    end;
+  FViewModel.ContactsViewModel.QueryCurrentContact := function : TContact
+                                                      begin
+                                                        Result := LContact;
+                                                      end;
 
-  FViewModel.ConfirmDeleteContact := function(ViewModel : TMainViewModel; Contact : TContact): boolean
-                                     begin
-                                       Result := True;
-                                     end;
+  FViewModel.ContactsViewModel.ConfirmDeleteContact := function(Contact : TContact): boolean
+                                                       begin
+                                                         Result := True;
+                                                       end;
   FViewModel.Delete;
-  Assert.AreEqual(LCount - 1, FViewModel.ContactCount);
+  Assert.AreEqual(LCount - 1, FViewModel.ContactsViewModel.ContactCount);
 end;
 
 procedure TMainViewModelTest.TestDeleteUnconfirmed;
@@ -139,38 +139,38 @@ var
   LContact : TContact;
   LCount : Integer;
 begin
-  FViewModel.ActiveView := TActiveView.Contacts;
-  LContact := FviewModel.NewContact;
-  LCount := FViewModel.ContactCount;
+  FViewModel.ActiveViewModel := TActiveViewModel.Contacts;
+  LContact := FviewModel.ContactsViewModel.NewContact;
+  LCount := FViewModel.ContactsViewModel.ContactCount;
 
-  FViewModel.QueryCurrentContact := function (ViewModel : TMainViewModel) : TContact
-                                    begin
-                                      Result := LContact;
-                                    end;
+  FViewModel.ContactsViewModel.QueryCurrentContact := function : TContact
+                                                      begin
+                                                        Result := LContact;
+                                                      end;
 
-  FViewModel.ConfirmDeleteContact := function(ViewModel : TMainViewModel; Contact : TContact): boolean
-                                     begin
-                                       Result := False;
-                                     end;
+  FViewModel.ContactsViewModel.ConfirmDeleteContact := function(Contact : TContact): boolean
+                                                       begin
+                                                         Result := False;
+                                                       end;
   FViewModel.Delete;
-  Assert.AreEqual(LCount, FViewModel.ContactCount);
+  Assert.AreEqual(LCount, FViewModel.ContactsViewModel.ContactCount);
 end;
 
 procedure TMainViewModelTest.TestEditContactDelegation;
 var
   LContact : TContact;
 begin
-  FViewModel.ActiveView := TActiveView.Contacts;
-  LContact := FViewModel.NewContact;
-  FViewModel.QueryCurrentContact := function (ViewModel : TMainViewModel) : TContact
-                                    begin
-                                      Result := LContact;
-                                    end;
-  FViewModel.DoEditContact := procedure(ContactViewModel : TContactViewModel)
-                              begin
-                                ContactViewModel.ModelObject.Firstname := 'Barney';
-                                ContactViewModel.Save;
-                              end;
+  FViewModel.ActiveViewModel := TActiveViewModel.Contacts;
+  LContact := FViewModel.ContactsViewModel.NewContact;
+  FViewModel.ContactsViewModel.QueryCurrentContact := function : TContact
+                                                      begin
+                                                        Result := LContact;
+                                                      end;
+  FViewModel.ContactsViewModel.DoEditContact := procedure(ContactViewModel : TContactViewModel)
+                                                begin
+                                                  ContactViewModel.ModelObject.Firstname := 'Barney';
+                                                  ContactViewModel.Save;
+                                                end;
   FviewModel.Edit;
   Assert.AreEqual('Barney', LContact.Firstname);
 end;
@@ -179,19 +179,19 @@ procedure TMainViewModelTest.TestEditContactDelegationAfterCancel;
 var
   LContact : TContact;
 begin
-  FViewModel.ActiveView := TActiveView.Contacts;
+  FViewModel.ActiveViewModel := TActiveViewModel.Contacts;
   LCOntact := TContact.Create;
   LContact.Firstname := 'Fred';
-  FViewModel.AddContact(LContact);
-  FViewModel.QueryCurrentContact := function (ViewModel : TMainViewModel) : TContact
-                                    begin
-                                      Result := LContact;
-                                    end;
-  FViewModel.DoEditContact := procedure(ContactViewModel : TContactViewModel)
-                              begin
-                                ContactViewModel.ModelObject.Firstname := 'Barney';
-                                ContactViewModel.Cancel;
-                              end;
+  FViewModel.ContactsViewModel.AddContact(LContact);
+  FViewModel.ContactsViewModel.QueryCurrentContact := function : TContact
+                                                      begin
+                                                        Result := LContact;
+                                                      end;
+  FViewModel.ContactsViewModel.DoEditContact := procedure(ContactViewModel : TContactViewModel)
+                                                begin
+                                                  ContactViewModel.ModelObject.Firstname := 'Barney';
+                                                  ContactViewModel.Cancel;
+                                                end;
   FViewModel.Edit;
   Assert.AreEqual('Fred', LContact.Firstname);
 end;
@@ -200,17 +200,17 @@ procedure TMainViewModelTest.TestNoOnContactsChangedAfterDeleteUnconfirmed;
 var
   LContact : TContact;
 begin
-  FViewModel.ActiveView := TActiveView.Contacts;
-  LContact := FviewModel.NewContact;
-  FViewModel.QueryCurrentContact := function (ViewModel : TMainViewModel) : TContact
-                                    begin
-                                      Result := LContact;
-                                    end;
+  FViewModel.ActiveViewModel := TActiveViewModel.Contacts;
+  LContact := FviewModel.ContactsViewModel.NewContact;
+  FViewModel.ContactsViewModel.QueryCurrentContact := function : TContact
+                                                      begin
+                                                        Result := LContact;
+                                                      end;
 
-  FViewModel.ConfirmDeleteContact := function(ViewModel : TMainViewModel; Contact : TContact): boolean
-                                     begin
-                                       Result := False;
-                                     end;
+  FViewModel.ContactsViewModel.ConfirmDeleteContact := function(Contact : TContact): boolean
+                                                       begin
+                                                         Result := False;
+                                                       end;
   MessageManager.SubscribeToMessage(TOnContactsUpdated, procedure(const Sender : TObject; const M : TMessageBase)
                                                         begin
                                                           Assert.Fail;
@@ -224,23 +224,23 @@ begin
                                                         begin
                                                           Assert.IsTrue(True);
                                                         end);
-  FViewModel.NewContact;
+  FViewModel.ContactsViewModel.NewContact;
 end;
 
 procedure TMainViewModelTest.TestOnContactsChangedAfterDeleteConfirmed;
 var
   LContact : TContact;
 begin
-  FViewModel.ActiveView := TActiveView.Contacts;
-  LContact := FviewModel.NewContact;
-  FViewModel.QueryCurrentContact := function (ViewModel : TMainViewModel) : TContact
-                                    begin
-                                      Result := LContact;
-                                    end;
-  FViewModel.ConfirmDeleteContact := function(ViewModel : TMainViewModel; Contact : TContact): boolean
-                                     begin
-                                       Result := True;
-                                     end;
+  FViewModel.ActiveViewModel := TActiveViewModel.Contacts;
+  LContact := FviewModel.ContactsViewModel.NewContact;
+  FViewModel.ContactsViewModel.QueryCurrentContact := function : TContact
+                                                      begin
+                                                        Result := LContact;
+                                                      end;
+  FViewModel.ContactsViewModel.ConfirmDeleteContact := function (Contact : TContact): boolean
+                                                       begin
+                                                         Result := True;
+                                                       end;
   MessageManager.SubscribeToMessage(TOnContactsUpdated, procedure(const Sender : TObject; const M : TMessageBase)
                                                         begin
                                                           Assert.IsTrue(True);

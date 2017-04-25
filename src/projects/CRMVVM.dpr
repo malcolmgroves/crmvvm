@@ -18,7 +18,9 @@ uses
   Common.Messages in '..\common\Common.Messages.pas',
   Model.Company in '..\model\Model.Company.pas',
   ViewModel.Company in '..\viewmodels\ViewModel.Company.pas',
-  View.Company in '..\views\View.Company.pas' {CompanyView};
+  View.Company in '..\views\View.Company.pas' {CompanyView},
+  ViewModel.Sub.Contacts in '..\viewmodels\ViewModel.Sub.Contacts.pas',
+  ViewModel.Sub.Companies in '..\viewmodels\ViewModel.Sub.Companies.pas';
 
 {$R *.res}
 

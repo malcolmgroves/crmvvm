@@ -43,17 +43,18 @@ end;
 
 procedure TCompanyViewModelTest.TestCancel;
 begin
-  FViewModel.DoSaveModelObject := procedure (ViewModel : TCompanyViewModel; Company : TCompany)
+  FViewModel.DoSaveModelObject := procedure (Company : TCompany)
                                   begin
                                     Assert.Fail;
                                   end;
   FViewModel.ModelObject.Name := 'Amazon';
   FViewModel.Cancel;
+  Assert.AreEqual(cName, FCompany.Name);
 end;
 
 procedure TCompanyViewModelTest.TestSave;
 begin
-  FViewModel.DoSaveModelObject := procedure (ViewModel : TCompanyViewModel; Company : TCompany)
+  FViewModel.DoSaveModelObject := procedure (Company : TCompany)
                                   begin
                                     Assert.AreEqual('Amazon', FViewModel.ModelObject.Name);
                                   end;

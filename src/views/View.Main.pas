@@ -123,56 +123,56 @@ end;
 
 procedure TMainView.FormCreate(Sender: TObject);
 begin
-  ViewModel.DoEditContact :=  procedure (ContactViewModel : TContactViewModel)
-                              var
-                                LContactView : TContactView;
-                              begin
-                                LContactView := TContactView.Create(nil, ContactViewModel);
-                                LContactView.ShowModal(procedure(ModalResult : TModalResult)
-                                                       begin
-                                                         ContactViewModel.Free;
-                                                         bindsrcContacts.Refresh;
-                                                       end);
-                              end;
-  ViewModel.DoEditCompany :=  procedure (CompanyViewModel : TCompanyViewModel)
-                              var
-                                LCompanyView : TCompanyView;
-                              begin
-                                LCompanyView := TCompanyView.Create(nil, CompanyViewModel);
-                                LCompanyView.ShowModal(procedure(ModalResult : TModalResult)
-                                                       begin
-                                                         CompanyViewModel.Free;
-                                                         bindsrcCompanies.Refresh;
-                                                       end);
-                              end;
+  ViewModel.ContactsViewModel.DoEditContact :=  procedure (ContactViewModel : TContactViewModel)
+                                                var
+                                                  LContactView : TContactView;
+                                                begin
+                                                  LContactView := TContactView.Create(nil, ContactViewModel);
+                                                  LContactView.ShowModal(procedure(ModalResult : TModalResult)
+                                                                         begin
+                                                                           ContactViewModel.Free;
+                                                                           bindsrcContacts.Refresh;
+                                                                         end);
+                                                end;
+  ViewModel.CompaniesViewModel.DoEditCompany := procedure (CompanyViewModel : TCompanyViewModel)
+                                                var
+                                                  LCompanyView : TCompanyView;
+                                                begin
+                                                  LCompanyView := TCompanyView.Create(nil, CompanyViewModel);
+                                                  LCompanyView.ShowModal(procedure(ModalResult : TModalResult)
+                                                                         begin
+                                                                           CompanyViewModel.Free;
+                                                                           bindsrcCompanies.Refresh;
+                                                                         end);
+                                                end;
   ViewModel.DoChangeView :=  procedure (ViewModel : TMainViewModel)
                               begin
-                                case ViewModel.ActiveView of
+                                case ViewModel.ActiveViewModel of
                                   Contacts: TabControl1.ActiveTab := tabContacts;
                                   Companies: TabControl1.ActiveTab := tabCompanies;
                                 end;
                               end;
-  ViewModel.ConfirmDeleteContact := function (ViewModel : TMainViewModel; Contact : TContact) : boolean
-                                    begin
-                                      Result := MessageDlg(Format('Are you sure you want to delete %s %s?', [COntact.Firstname, COntact.Lastname]),
-                                                           TMsgDlgType.mtConfirmation, mbOKCancel, 0) = mrOK;
-                                    end;
+  ViewModel.ContactsViewModel.ConfirmDeleteContact := function (Contact : TContact) : boolean
+                                                      begin
+                                                        Result := MessageDlg(Format('Are you sure you want to delete %s %s?', [COntact.Firstname, COntact.Lastname]),
+                                                                             TMsgDlgType.mtConfirmation, mbOKCancel, 0) = mrOK;
+                                                      end;
 
-  ViewModel.ConfirmDeleteCompany := function (ViewModel : TMainViewModel; Company : TCompany) : boolean
-                                    begin
-                                      Result := MessageDlg(Format('Are you sure you want to delete %s?', [Company.Name]),
-                                                           TMsgDlgType.mtConfirmation, mbOKCancel, 0) = mrOK;
-                                    end;
+  ViewModel.CompaniesViewModel.ConfirmDeleteCompany :=  function (Company : TCompany) : boolean
+                                                        begin
+                                                          Result := MessageDlg(Format('Are you sure you want to delete %s?', [Company.Name]),
+                                                                               TMsgDlgType.mtConfirmation, mbOKCancel, 0) = mrOK;
+                                                        end;
 
-  ViewModel.QueryCurrentContact :=  function (ViewModel : TMainViewModel) : TContact
-                                    begin
-                                      Result := ContactAdapter.Current;
-                                    end;
+  ViewModel.ContactsViewModel.QueryCurrentContact :=  function : TContact
+                                                      begin
+                                                        Result := ContactAdapter.Current;
+                                                      end;
 
-  ViewModel.QueryCurrentCompany :=  function (ViewModel : TMainViewModel) : TCompany
-                                    begin
-                                      Result := CompanyAdapter.Current;
-                                    end;
+  ViewModel.CompaniesViewModel.QueryCurrentCompany :=  function : TCompany
+                                                       begin
+                                                         Result := CompanyAdapter.Current;
+                                                       end;
 
   MessageManager.SubscribeToMessage(TOnContactsUpdated, procedure(const Sender : TObject; const M : TMessageBase)
                                                         begin
@@ -201,37 +201,26 @@ end;
 
 procedure TMainView.actAddExecute(Sender: TObject);
 begin
-  {I have purposely put this logic in the View, rather than the ViewModel as I have
-  with the actDeleteExecute and actEditExecute methods below, to contrast the two approaches.
-  This approach means our View has more logic in it, logic that is not testable,
-  whereas actDeleteExecute puts that logic in the ViewModel where it can be unit tested. }
-  case ViewModel.ActiveView of
-    Contacts: ViewModel.NewContact;
-    Companies: ViewModel.NewCompany;
-  end;
+  ViewModel.New;
 end;
 
 procedure TMainView.actCompaniesExecute(Sender: TObject);
 begin
-  ViewModel.ActiveView := TActiveView.Companies;
+  ViewModel.ActiveViewModel := TActiveViewModel.Companies;
 end;
 
 procedure TMainView.actContactsExecute(Sender: TObject);
 begin
-  ViewModel.ActiveView := TActiveView.Contacts;
+  ViewModel.ActiveViewModel := TActiveViewModel.Contacts;
 end;
 
 procedure TMainView.actDeleteExecute(Sender: TObject);
 begin
-  {Contrast this with the actAddExecute method above. This method defers any decision logic
-  about what sort of object to delete to the ViewModel, where it can be tested more easily.}
   ViewModel.Delete;
 end;
 
 procedure TMainView.actEditExecute(Sender: TObject);
 begin
-  {Contrast this with the actAddExecute method above. This method defers any decision logic
-  about what sort of object to edit to the ViewModel, where it can be tested more easily.}
   ViewModel.Edit;
 end;
 
@@ -239,14 +228,14 @@ procedure TMainView.bindsrcCompaniesCreateAdapter(Sender: TObject;
   var ABindSourceAdapter: TBindSourceAdapter);
 begin
   ABindSourceAdapter := TEnumerableBindSourceAdapter<TCompany>.Create(bindsrcCompanies,
-                                                                      ViewModel.Companies);
+                                                                      ViewModel.CompaniesViewModel.Companies);
 end;
 
 procedure TMainView.bindsrcContactsCreateAdapter(Sender: TObject;
   var ABindSourceAdapter: TBindSourceAdapter);
 begin
   ABindSourceAdapter := TEnumerableBindSourceAdapter<TContact>.Create(bindsrcContacts,
-                                                                      ViewModel.Contacts);
+                                                                      ViewModel.ContactsViewModel.Contacts);
 end;
 
 

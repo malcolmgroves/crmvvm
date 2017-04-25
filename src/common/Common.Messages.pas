@@ -2,12 +2,12 @@ unit Common.Messages;
 
 interface
 uses
-  System.Messaging, ViewModel.Main;
+  System.Messaging, ViewModel.Sub.Contacts, ViewModel.Sub.COmpanies, ViewModel.Main;
 
 type
 
-  TOnContactsUpdated = class(TObjectMessage<TMainViewModel>);
-  TOnCompaniesUpdated = class(TObjectMessage<TMainViewModel>);
+  TOnContactsUpdated = class(TObjectMessage<TContactsSubViewModel>);
+  TOnCompaniesUpdated = class(TObjectMessage<TCompaniesSubViewModel>);
 
 function MessageManager : TMessageManager;
 
