@@ -133,8 +133,8 @@ begin
                    begin
                      FCompanies.AddCompany(LCompany);
                    end, DuplicateObjectException);
-  Assert.AreEqual(LCount + 1, FCompanies.Count);  // purposely failing to test jenkins
-//  Assert.AreEqual(LCount , FCompanies.Count);
+//  Assert.AreEqual(LCount + 1, FCompanies.Count);  // purposely failing to test jenkins
+  Assert.AreEqual(LCount , FCompanies.Count);
 end;
 
 procedure TCompaniesTest.TestContainsAfterAdd;
