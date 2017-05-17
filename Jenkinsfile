@@ -13,13 +13,13 @@ pipeline {
       steps {
         bat "C:\\Windows\\Microsoft.NET\\Framework\\v3.5\\msbuild.exe /v:diag /p:DCC_BuildAllUnits=true /p:config=Debug src\\projects\\CRMVVMTests.dproj"
         bat "bin\\Win32\\Debug\\CRMVVMTests.exe"
-        nunit testResultsPattern: '**\\bin\\Win32\\Debug\\dunitx-results.xml'
       }
     }
   }
   post {
     always {
       archive 'bin\\Win32\\Release\\CRMVVM.exe'
+      nunit testResultsPattern: '**\\bin\\Win32\\Debug\\dunitx-results.xml'
     }
   }
 }
